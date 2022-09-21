@@ -4,8 +4,13 @@
 
 {% block container %}
 
-{% for category in category_list %}
-<button>{{ category.category_name }}</button>
-{% endfor %}
+    {% for category in category_list %}
+    <div class="card" style="width: 18rem;">
+      <div class="card-body text-center">
+        <h5 class="card-title">{{ category.category_name }}</h5>
+        <a href="#" class="btn btn-link">Consulta</a>
+      </div>
+    </div>
+    {% endfor %}
 
 {% endblock container %}
