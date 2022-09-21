@@ -1,0 +1,30 @@
+{% extends 'index_tmp.html' %}
+
+{% load static %}
+{% block head_meta_title %}{{ category.category_name }} | {{ block.super }}{% endblock head_meta_title %}
+{% block head_title %}{{ category.category_name }} | {{ block.super }}{% endblock head_title %}
+{% block meta_description %}{{ category.page_header }}{% endblock meta_description %}
+{% block opengraph_title %}{{ category.category_name }} | {{ block.super }}{% endblock opengraph_title %}
+{% block opengraph_description %}{{ category.page_header }}{% endblock opengraph_description %}
+{% block opengraph_title_twitter %}{{ category.category_name }} | {{ block.super }}{% endblock opengraph_title_twitter %}
+{% block opengraph_description_twitter %}{{ category.page_header }}{% endblock opengraph_description_twitter %}
+
+{% block page %}
+{{ category.category_name }}
+<hr><hr>
+{% for post in post_list %}
+    {% if post.highlighted %}
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.contents }}</p>
+    {% endif %}
+{% endfor %}
+
+{% for post in post_list %}
+    {% if not post.highlighted %}
+<h3>{{ post.title }}</h3>
+<p>{{ post.publishing_date }}</p>
+<p>{{ post.description }}</p>
+<hr>
+    {% endif %}
+{% endfor %}
+{% endblock page %}

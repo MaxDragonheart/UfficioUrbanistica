@@ -4,7 +4,7 @@ from django.urls import reverse
 from abstracts.models import CategoryBase, ModelPost
 
 
-class BlogCategory(CategoryBase):
+class Section(CategoryBase):
     """
     Questa classe definisce le caratteristiche di
     una categoria
@@ -19,12 +19,12 @@ class BlogCategory(CategoryBase):
         verbose_name_plural = "Sezioni"
 
 
-class BlogPost(ModelPost):
+class SectionPost(ModelPost):
     """
     Questa classe definisce le caratteristiche di
     un post del blog
     """
-    category = models.ForeignKey(BlogCategory, on_delete=models.PROTECT, related_name="related_blogcategory")
+    category = models.ForeignKey(Section, on_delete=models.PROTECT, related_name="related_blogcategory")
 
     def get_absolute_url(self):
         return reverse("single_blogpost", kwargs={

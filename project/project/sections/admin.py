@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import BlogCategory, BlogPost
+from .models import Section, SectionPost
 
 
-class BlogCategoryAdmin(admin.ModelAdmin):
+class SectionAdmin(admin.ModelAdmin):
     list_display = ["category_name"]
     prepopulated_fields = {"slug_category": ("category_name",)}
     fieldsets = [
@@ -11,10 +11,10 @@ class BlogCategoryAdmin(admin.ModelAdmin):
             ]
 
     class Meta:
-        model = BlogCategory
+        model = Section
 
 
-class BlogPostAdmin(admin.ModelAdmin):
+class SectionPostAdmin(admin.ModelAdmin):
     list_display = ["title", "category", "publishing_date", "updating_date", "highlighted", "draft", "is_future"]
     list_filter = ["publishing_date", "updating_date", "category"]
     search_fields = ["title", "description", "contents"]
@@ -27,8 +27,8 @@ class BlogPostAdmin(admin.ModelAdmin):
     ]
 
     class Meta:
-        model = BlogPost
+        model = SectionPost
 
 
-admin.site.register(BlogCategory, BlogCategoryAdmin)
-admin.site.register(BlogPost, BlogPostAdmin)
+admin.site.register(Section, SectionAdmin)
+admin.site.register(SectionPost, SectionPostAdmin)
