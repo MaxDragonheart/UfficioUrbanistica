@@ -128,5 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# Poetry stuffs
+/project/poetry.lock
+
 # IDE
 .idea
