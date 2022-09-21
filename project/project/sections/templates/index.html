@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block container %}
+
+{% for category in category_list %}
+<button>{{ category.category_name }}</button>
+{% endfor %}
+
+{% endblock container %}
