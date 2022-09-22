@@ -33,17 +33,16 @@ def single_category(request, slug_category):
     """
     category = get_object_or_404(Section, slug_category=slug_category)
     if request.user.is_staff:
-        blogpost_full = SectionPost.objects.filter(category=category)
+        post_list = SectionPost.objects.filter(category=category)
+        highlighted = post_list.filter(highlighted=True)[:1]
     else:
-        blogpost_full = post_filter.filter(category=category)
-
-    paginator = Paginator(blogpost_full, 10)
-    page = request.GET.get("pagina")
-    post_list = paginator.get_page(page)
+        post_list = post_filter.filter(category=category)
+        highlighted = post_list.filter(highlighted=True)[:1]
 
     context = {
             "category": category,
             "post_list": post_list,
+            "highlighted": highlighted,
             }
     return render(request, "single_category.html", context)
 
@@ -52,9 +51,17 @@ def all_posts(request):
     """
     Con questa funzione ottengo l'elenco di tutte le pubblicazioni
     """
-    articles = post_filter
+    if request.user.is_staff:
+        articles = SectionPost.objects.all()
+    else:
+        articles = post_filter
+
+    paginator = Paginator(articles, 10)
+    page = request.GET.get("pagina")
+    post_list = paginator.get_page(page)
+
     context = {
-        "articles": articles,
+        "post_list": post_list,
     }
     template = "all_posts.html"
     return render(request, template, context)
