@@ -2,14 +2,16 @@ from django.db import models
 
 from abstracts.models import TimeManager
 
-
-class Link(TimeManager):
-
-    COLUMNS = [
+column_list = [
         ('Colonna 1', 1),
         ('Colonna 2', 2),
         ('Colonna 3', 3),
     ]
+
+
+class Link(TimeManager):
+
+    COLUMNS = column_list
 
     title = models.CharField(max_length=70, unique=True)
     description = models.TextField(max_length=150, blank=False, null=False)
@@ -23,3 +25,4 @@ class Link(TimeManager):
         ordering = ['title']
         verbose_name = "Link Utile"
         verbose_name_plural = "Link Utili"
+        
