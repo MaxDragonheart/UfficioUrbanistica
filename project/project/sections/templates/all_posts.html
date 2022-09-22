@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block page_title %}Elenco delle pubblicazioni | {{ block.super }}{% endblock page_title %}
+{% block header_center_social %}<span>Elenco delle pubblicazioni</span>{% endblock header_center_social %}
+
+{% block container %}
+
+<div class="table-responsive">
+  <table class="table about-table">
+    <thead>
+      <tr>
+        <th class="text-center" colspan="7" scope="col">
+          <h3 class="my-0 py-1" id="pubblicazioni"><strong>Elenco delle pubblicazioni</strong></h3>
+        </th>
+      </tr>
+      <tr>
+        <th class="text-center" colspan="1" scope="col">Titolo</th>
+        <th class="text-center" colspan="1" scope="col">Descrizione</th>
+        <th class="text-center" colspan="2" scope="col">Sezione</th>
+        <th class="text-center" colspan="2" scope="col">Data di pubblicazione</th>
+        <th class="text-center" colspan="1" scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for article in articles %}
+        <tr>
+          <td class="text-center" colspan="1" scope="col"><p><em>{{ article.title }}</em></p></td>
+          <td class="text-center" colspan="1" scope="col"><p>{{ article.description }}</p></td>
+          <td class="text-center" colspan="2" scope="col"><h4>{{ article.category }}</h4></td>
+          <td class="text-center" colspan="2" scope="col"><p>{{ article.publishing_date }}</p></td>
+          <td class="text-center" colspan="1" scope="col">
+              <a type="button" class="btn btn-success" href="#" target="_blank">Consulta</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock container %}

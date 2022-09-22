@@ -6,6 +6,7 @@ from .models import Section, SectionPost
 
 post_filter = SectionPost.objects.filter(draft=False, publishing_date__lte=Now())
 
+
 def tmp_homepage(request):
     """
     Home page temporanea
@@ -15,6 +16,7 @@ def tmp_homepage(request):
     template = "index_tmp.html"
     return render(request, template)
 
+
 def homepage(request):
     """
     Con questa funzione definisco la lista delle categorie
@@ -23,6 +25,7 @@ def homepage(request):
     context = {"category_list": category_list}
     template = "index.html"
     return render(request, template, context)
+
 
 def single_category(request, slug_category):
     """
@@ -43,6 +46,18 @@ def single_category(request, slug_category):
             "post_list": post_list,
             }
     return render(request, "single_category.html", context)
+
+
+def all_posts(request):
+    """
+    Con questa funzione ottengo l'elenco di tutte le pubblicazioni
+    """
+    articles = post_filter
+    context = {
+        "articles": articles,
+    }
+    template = "all_posts.html"
+    return render(request, template, context)
 
 
 def single_post(request, slug_post, slug_category):
