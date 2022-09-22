@@ -64,11 +64,9 @@
         <h5>Amministrazione</h5>
         <div class="link-list-wrapper">
             <ul class="footer-list link-list clearfix">
-                <li><a class="list-item" href="#" title="Vai alla pagina: Giunta e consiglio">Giunta e consiglio</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Aree di competenza">Aree di competenza</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Dipendenti">Dipendenti</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Luoghi">Luoghi</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Associazioni e società partecipate">Associazioni e società partecipate</a></li>
+                {% for link in links_column1 %}
+                <li><a class="list-item" href="{{ link.url }}" title="Vai alla pagina: {{ link.title }}" target="_blank">{{ link.title }}</a></li>
+                {% endfor %}
             </ul>
         </div>
     </div>
@@ -80,12 +78,9 @@
         <h5>Servizi</h5>
         <div class="link-list-wrapper">
             <ul class="footer-list link-list clearfix">
-                <li><a class="list-item" href="#" title="Vai alla pagina: Pagamenti">Pagamenti</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Sostegno">Sostegno</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Domande e iscrizioni">Domande e iscrizioni</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Segnalazioni">Segnalazioni</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Autorizzazioni e concessioni">Autorizzazioni e concessioni</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Certificati e dichiarazioni">Certificati e dichiarazioni</a></li>
+                {% for link in links_column2 %}
+                <li><a class="list-item" href="{{ link.url }}" title="Vai alla pagina: {{ link.title }}" target="_blank">{{ link.title }}</a></li>
+                {% endfor %}
             </ul>
         </div>
     </div>
@@ -97,9 +92,9 @@
         <h5>Novità</h5>
         <div class="link-list-wrapper">
             <ul class="footer-list link-list clearfix">
-                <li><a class="list-item" href="#" title="Vai alla pagina: Notizie">Notizie</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Eventi">Eventi</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Comunicati stampa">Comunicati stampa</a></li>
+                {% for link in links_column3 %}
+                <li><a class="list-item" href="{{ link.url }}" title="Vai alla pagina: {{ link.title }}" target="_blank">{{ link.title }}</a></li>
+                {% endfor %}
             </ul>
         </div>
     </div>
@@ -138,7 +133,12 @@
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 pb-2">
-                <h5>Lorem Ipsum</h5>
+                <h5>Area Riservata</h5>
+                <div class="link-list-wrapper">
+                    <ul class="footer-list link-list clearfix">
+                        <li><a class="list-item" href="#" title="Accedi all'area riservata">Accedi</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="col-lg-4 col-md-4 pb-2">
                 <div class="pb-2">
