@@ -1,4 +1,3 @@
-{#% extends 'index_tmp.html' %#}
 {% extends 'base.html' %}
 
 {% load static %}
@@ -16,6 +15,12 @@
 <div class="container my-2">
     <div class="article-header">
         <h1 class="article-title">{{ article.title }}</h1>
+        {% if article.is_future %}
+          <p><span class="text-primary fw-bold">Futuro</span></p>
+        {% elif article.draft %}
+          <p><span class="text-danger fw-bold">Bozza</span></p>
+        {% endif %}
+        <h3>{{ article.publishing_date }}</h3>
     </div>
     <article>{{ article.contents|safe }}</article>
     <div class="">

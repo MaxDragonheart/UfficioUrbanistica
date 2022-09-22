@@ -6,6 +6,7 @@ from .models import Section, SectionPost
 
 post_filter = SectionPost.objects.filter(draft=False, publishing_date__lte=Now())
 
+
 def tmp_homepage(request):
     """
     Home page temporanea
@@ -14,6 +15,7 @@ def tmp_homepage(request):
     """
     template = "index_tmp.html"
     return render(request, template)
+
 
 def homepage(request):
     """
@@ -24,25 +26,45 @@ def homepage(request):
     template = "index.html"
     return render(request, template, context)
 
+
 def single_category(request, slug_category):
     """
     Con questa funzione definisco la lista dei post della singola categoria
     """
     category = get_object_or_404(Section, slug_category=slug_category)
     if request.user.is_staff:
-        blogpost_full = SectionPost.objects.filter(category=category)
+        post_list = SectionPost.objects.filter(category=category)
+        highlighted = post_list.filter(highlighted=True)[:1]
     else:
-        blogpost_full = post_filter.filter(category=category)
-
-    paginator = Paginator(blogpost_full, 10)
-    page = request.GET.get("pagina")
-    post_list = paginator.get_page(page)
+        post_list = post_filter.filter(category=category)
+        highlighted = post_list.filter(highlighted=True)[:1]
 
     context = {
             "category": category,
             "post_list": post_list,
+            "highlighted": highlighted,
             }
     return render(request, "single_category.html", context)
+
+
+def all_posts(request):
+    """
+    Con questa funzione ottengo l'elenco di tutte le pubblicazioni
+    """
+    if request.user.is_staff:
+        articles = SectionPost.objects.all()
+    else:
+        articles = post_filter
+
+    paginator = Paginator(articles, 10)
+    page = request.GET.get("pagina")
+    post_list = paginator.get_page(page)
+
+    context = {
+        "post_list": post_list,
+    }
+    template = "all_posts.html"
+    return render(request, template, context)
 
 
 def single_post(request, slug_post, slug_category):

@@ -1,49 +1,29 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% block page_title %}{{ category.category_name }} | {{ block.super }}{% endblock page_title %}
-{% block header_center_social %}<strong>{{ category.category_name }}</strong>{% endblock header_center_social %}
+{% block page_title %}Elenco delle pubblicazioni | {{ block.super }}{% endblock page_title %}
+{% block header_center_social %}<span>Elenco delle pubblicazioni</span>{% endblock header_center_social %}
 
 {% block container %}
 
-{% for post in post_list %}
-    {% if post.highlighted %}
-    <div class="container my-2">
-        <article>{{ post.contents|safe }}</article>
-        <div class="">
-            <ul class="">
-            {% for attachment in post.attachment.all %}
-                {% if post.attachment %}
-                    <li>
-                        <a class="link-white-background" href="{{ attachment.file.url }}" title="Scarica {{ attachment }}" target="_blank">{{ attachment }}</a>
-                        Tipo: {{ attachment.extension }}, Dimensione: {{ attachment.size }}
-                    </li>
-                {% endif %}
-            {% endfor %}
-            </ul>
-        </div>
-    </div>
-    {% endif %}
-{% endfor %}
-<hr>
 <div class="table-responsive">
   <table class="table about-table">
     <thead>
       <tr>
-        <th class="text-center" colspan="5">
-          <h3 class="my-0 py-1"><strong>Ultime 5 pubblicazioni</strong></h3>
+        <th class="text-center" colspan="6">
+          <h3 class="my-0 py-1" id="pubblicazioni"><strong>Elenco delle pubblicazioni</strong></h3>
         </th>
       </tr>
       <tr>
         <th class="text-center" colspan="1">Titolo</th>
         <th class="text-center" colspan="2">Descrizione</th>
+        <th class="text-center" colspan="1">Sezione</th>
         <th class="text-center" colspan="1">Data di pubblicazione</th>
         <th class="text-center" colspan="1"></th>
       </tr>
     </thead>
     <tbody>
       {% for post in post_list %}
-        {% if not post.highlighted %}
         <tr>
           {% if post.is_future %}
           <td class="text-center" colspan="1">
@@ -57,23 +37,14 @@
           <td class="text-center" colspan="1"><p><em>{{ post.title }}</em></p></td>
           {% endif %}
           <td class="text-center" colspan="2"><p>{{ post.description }}</p></td>
+          <td class="text-center" colspan="1"><h4>{{ post.category }}</h4></td>
           <td class="text-center" colspan="1"><p>{{ post.publishing_date }}</p></td>
           <td class="text-center" colspan="1">
               <a type="button" class="btn btn-success" href="{{ post.get_absolute_url }}">Consulta</a>
           </td>
         </tr>
-        {% endif %}
       {% endfor %}
     </tbody>
-    <tfoot>
-      <tr>
-        <th class="text-center" colspan="7">
-          <h3 class="my-0 py-1">
-              <a class="link-white-background" href="{% url 'all_posts' %}">Elenco completo</a>
-          </h3>
-        </th>
-      </tr>
-    </tfoot>
   </table>
 </div>
 
