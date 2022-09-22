@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
 from django.urls import reverse
 
 
@@ -20,9 +20,15 @@ class UserProfile(AbstractUser):
         return str(self.name) + ' ' + str(self.surname)
 
     def get_absolute_url(self):
-        return reverse("user_details", kwargs={"username":self.username})
+        return reverse("user_details", kwargs={"username": self.username})
 
     class Meta:
         ordering = ['username']
-        verbose_name = "User Profile"
-        verbose_name_plural = "Users Profile"
+        verbose_name = "Utente"
+        verbose_name_plural = "Utenti"
+
+
+# class ProjectGroup(Group):
+#     class Meta:
+#         verbose_name = "Gruppo"
+#         verbose_name_plural = "Gruppi"
