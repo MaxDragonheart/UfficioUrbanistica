@@ -23,7 +23,7 @@ class SectionPostAdmin(admin.ModelAdmin):
         ("Dati generali", {"fields": ["title", "slug_post", "header_image"]}),
         ("Contenuti", {"fields": ["description", "contents", "attachment"]}),
         ("Riferimenti", {"fields": ["publishing_date", "category"]}),
-        ("Opzioni", {"fields": ["highlighted", "draft"]}),
+        ("Opzioni", {"fields": ["highlighted", "draft", "user"]}),
     ]
 
     class Meta:
