@@ -18,6 +18,19 @@
         <h1 class="article-title">{{ article.title }}</h1>
     </div>
     <article>{{ article.contents|safe }}</article>
+    <div class="">
+        <ul class="">
+        {% for attachment in article.attachment.all %}
+            {% if article.attachment %}
+                <li>
+                    <a class="link-white-background" href="{{ attachment.file.url }}" title="Scarica {{ attachment }}" target="_blank">{{ attachment }}</a>
+                    Tipo: {{ attachment.extension }}, Dimensione: {{ attachment.size }}
+                </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
 </div>
+
 
 {% endblock container %}

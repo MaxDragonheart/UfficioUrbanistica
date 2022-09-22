@@ -21,7 +21,7 @@ class SectionPostAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug_post": ("title",)}
     fieldsets = [
         ("Dati generali", {"fields": ["title", "slug_post", "header_image"]}),
-        ("Contenuti", {"fields": ["description", "contents"]}),
+        ("Contenuti", {"fields": ["description", "contents", "attachment"]}),
         ("Riferimenti", {"fields": ["publishing_date", "category"]}),
         ("Opzioni", {"fields": ["highlighted", "draft"]}),
     ]

@@ -67,3 +67,52 @@ class ModelPost(BaseModelPost):
 
     class Meta:
         abstract = True
+
+
+class FileUploadBase(TimeManager):
+    """
+    Modello generico per gestire l'upload dei file(documenti, immagini)
+    """
+    name = models.CharField(max_length=70, unique=True)
+    description = models.TextField(max_length=200, blank=False, null=False)
+
+    def __str__(self):
+        return self.name
+
+    def delete(self, *args, **kwargs):
+        """
+        Funzione che consente di cancellare un file caricato eliminando
+        sia il path dal DB che il file in se dalla directory
+        """
+        self.file.delete()
+        super().delete(*args, **kwargs)
+
+    @property
+    def size(self):
+        """
+        Funzione che umanizza le dimensioni di un file caricato
+        """
+        x = self.file.size
+        y = 512000
+        if x < y:
+            value = round(x/1000, 2)
+            ext = ' kb'
+        elif x < y*1000:
+            value = round(x/1000000, 2)
+            ext = ' Mb'
+        else:
+            value = round(x/1000000000, 2)
+            ext = ' Gb'
+        return str(value)+ext
+
+    @property
+    def extension(self):
+        """
+        Funzione che estrae l'estensione di un file caricato
+        """
+        name, extension = os.path.splitext(self.file.name)
+        return extension
+
+    class Meta:
+        ordering = ['-publishing_date']
+        abstract = True
