@@ -106,11 +106,9 @@
         <h5>Documenti</h5>
         <div class="link-list-wrapper">
             <ul class="footer-list link-list clearfix">
-                <li><a class="list-item" href="#" title="Vai alla pagina: Progetti e attività">Progetti e attività</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Delibere, determine e ordinanze">Delibere, determine e ordinanze</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Bandi">Bandi</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Concorsi">Concorsi</a></li>
-                <li><a class="list-item" href="#" title="Vai alla pagina: Albo pretorio">Albo pretorio</a></li>
+                {% for item in highlighted_media %}
+                <li><a class="list-item" href="{{ item.file.url }}" title="Scarica {{ item.name }}" target="_blank">{{ item.name }}</a></li>
+                {% endfor %}
             </ul>
         </div>
     </div>

@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 from abstracts.models import CategoryBase, ModelPost
+from media.models import FileUpload
 
 
 class Section(CategoryBase):
@@ -25,7 +26,7 @@ class SectionPost(ModelPost):
     un post del blog
     """
     category = models.ForeignKey(Section, on_delete=models.PROTECT, related_name="related_category")
-
+    attachment = models.ManyToManyField(FileUpload, related_name="related_attachment", blank=True)
     def get_absolute_url(self):
         return reverse("single_article", kwargs={
                                                 "slug_post": self.slug_post,

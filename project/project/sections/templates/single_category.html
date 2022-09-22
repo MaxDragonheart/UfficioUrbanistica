@@ -11,6 +11,18 @@
     {% if post.highlighted %}
     <div class="container my-2">
         <article>{{ post.contents|safe }}</article>
+        <div class="">
+            <ul class="">
+            {% for attachment in post.attachment.all %}
+                {% if post.attachment %}
+                    <li>
+                        <a class="link-white-background" href="{{ attachment.file.url }}" title="Scarica {{ attachment }}" target="_blank">{{ attachment }}</a>
+                        Tipo: {{ attachment.extension }}, Dimensione: {{ attachment.size }}
+                    </li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </div>
     </div>
     {% endif %}
 {% endfor %}
@@ -20,25 +32,27 @@
 </div>
 
 {% for post in post_list %}
-    {% if forloop.first %}<div class="card-deck card-deck-style row d-flex justify-content-center">{% endif %}
-        <div class="card card-style text-center" style="width: 18rem;">
-          <div class="card-body card-body-style">
-            <h4 class="card-title card-title-style">{{ post.title }}</h4>
-            <p><small>{{ post.publishing_date }}</small></p>
-            <p>{{ post.description }}</p>
-            <p class="card-content-style">
-                <a href="{{ post.get_absolute_url }}"
-                   class="btn btn-link card-btn-style link-white-background">
-                    Consulta
-                </a>
-            </p>
-          </div>
-        </div>
-    {% if forloop.counter|divisibleby:"3" or forloop.last %}
-        </div>
-    {% endif %}
-    {% if forloop.counter|divisibleby:"3" and not forloop.last %}
-        <div class="card-deck card-deck-style row d-flex justify-content-center">
+    {% if not post.highlighted %}
+        {% if forloop.first %}<div class="card-deck card-deck-style row d-flex justify-content-center">{% endif %}
+            <div class="card card-style text-center" style="width: 18rem;">
+              <div class="card-body card-body-style">
+                <h4 class="card-title card-title-style">{{ post.title }}</h4>
+                <p><small>{{ post.publishing_date }}</small></p>
+                <p>{{ post.description }}</p>
+                <p class="card-content-style">
+                    <a href="{{ post.get_absolute_url }}"
+                       class="btn btn-link card-btn-style link-white-background">
+                        Consulta
+                    </a>
+                </p>
+              </div>
+            </div>
+        {% if forloop.counter|divisibleby:"3" or forloop.last %}
+            </div>
+        {% endif %}
+        {% if forloop.counter|divisibleby:"3" and not forloop.last %}
+            <div class="card-deck card-deck-style row d-flex justify-content-center">
+        {% endif %}
     {% endif %}
 {% endfor %}
 
