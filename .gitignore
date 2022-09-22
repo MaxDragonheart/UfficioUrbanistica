@@ -137,3 +137,4 @@ dmypy.json
 # Project folders
 /project/static-folder
 /project/media-folder/uploads
+/project/project/fixtures
