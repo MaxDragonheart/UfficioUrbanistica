@@ -1,0 +1,46 @@
+[
+{
+  "model": "sections.section",
+  "pk": 1,
+  "fields": {
+    "publishing_date": "2022-09-22T14:41:05.377Z",
+    "updating_date": "2022-09-22T14:41:05.379Z",
+    "timestamp": "2022-09-22T14:41:05.380Z",
+    "category_name": "Edilizia",
+    "slug_category": "edilizia"
+  }
+},
+{
+  "model": "sections.section",
+  "pk": 2,
+  "fields": {
+    "publishing_date": "2022-09-22T14:41:08.749Z",
+    "updating_date": "2022-09-22T14:41:08.751Z",
+    "timestamp": "2022-09-22T14:41:08.751Z",
+    "category_name": "Lavori Pubblici",
+    "slug_category": "lavori-pubblici"
+  }
+},
+{
+  "model": "sections.section",
+  "pk": 3,
+  "fields": {
+    "publishing_date": "2022-09-22T14:41:12.450Z",
+    "updating_date": "2022-09-22T14:41:12.451Z",
+    "timestamp": "2022-09-22T14:41:12.451Z",
+    "category_name": "Open Data",
+    "slug_category": "open-data"
+  }
+},
+{
+  "model": "sections.section",
+  "pk": 4,
+  "fields": {
+    "publishing_date": "2022-09-22T14:41:15.828Z",
+    "updating_date": "2022-09-22T14:41:15.830Z",
+    "timestamp": "2022-09-22T14:41:15.830Z",
+    "category_name": "Urbanistica",
+    "slug_category": "urbanistica"
+  }
+}
+]

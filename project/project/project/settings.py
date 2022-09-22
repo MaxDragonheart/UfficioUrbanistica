@@ -52,6 +52,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
+    'django.contrib.gis',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
 
     'sections',
     'link',
@@ -192,6 +196,8 @@ ADMIN_PANEL_ROOT = "area-riservata"
 LOGIN_REDIRECT_URL = f"/{ADMIN_PANEL_ROOT}/"
 LOGOUT_REDIRECT_URL = "/"
 
+# Project settings
+SITE_ID = 1
 ADMIN_USERNAME = env('ADMIN_USERNAME')
 ADMIN_PASSWORD = env('ADMIN_PASSWORD')
 DOMAIN_NAME = env('DOMAIN_NAME')
