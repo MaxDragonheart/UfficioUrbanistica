@@ -133,3 +133,6 @@ dmypy.json
 
 # IDE
 .idea
+
+# Project folders
+/project/static-folder

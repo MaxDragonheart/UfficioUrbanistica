@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block container %}
+
+    {% for category in category_list %}
+        {% if forloop.first %}<div class="card-deck row">{% endif %}
+            <div class="card" style="width: 18rem;">
+              <div class="card-body text-center">
+                <h5 class="card-title">{{ category.category_name }}</h5>
+                <a href="#" class="btn btn-link">Consulta</a>
+              </div>
+            </div>
+        {% if forloop.counter|divisibleby:"3" or forloop.last %}</div>{% endif %}
+        {% if forloop.counter|divisibleby:"3" and not forloop.last %}<div class="card-deck row">{% endif %}
+    {% endfor %}
+
+{% endblock container %}

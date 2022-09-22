@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'jazzmin',
     'tinymce',
+    'bootstrap_italia_template',
 
     'django.contrib.admin',
     'django.contrib.auth',

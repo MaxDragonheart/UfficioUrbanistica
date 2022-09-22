@@ -15,6 +15,15 @@ def tmp_homepage(request):
     template = "index_tmp.html"
     return render(request, template)
 
+def homepage(request):
+    """
+    Con questa funzione definisco la lista delle categorie
+    """
+    category_list = Section.objects.all()
+    context = {"category_list": category_list}
+    template = "index.html"
+    return render(request, template, context)
+
 def single_category(request, slug_category):
     """
     Con questa funzione definisco la lista dei post della singola categoria

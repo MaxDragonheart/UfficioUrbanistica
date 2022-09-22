@@ -1,0 +1,160 @@
+{% extends 'bootstrap-italia-base.html' %}
+
+{% load static %}
+
+#### START HEAD
+{% block page_title %}Ufficio Urbanistica{% endblock page_title %}
+{% block page_meta_description %}Descrizione Ufficio Urbanistica{% endblock page_meta_description %}
+{% block page_meta_keywords %}{% endblock page_meta_keywords %}
+{% block page_meta_robots %}all{% endblock page_meta_robots %}"
+
+# Extra CSS o Javascript
+{% block extra_head %}
+    <link rel="icon" href="{% static 'logo.svg' %}">
+{% endblock extra_head %}
+#### END HEAD
+
+#### START BODY
+# Striscia top in Header
+{% block header_slim_wrapper %}{% endblock header_slim_wrapper %}
+
+# Header logo principale
+{% block header_center_logo %}
+    <img src="{% static 'logo.svg' %}">
+{% endblock header_center_logo %}
+
+# Nome organizzazione principale in Header
+{% block header_center_org_name %}Ufficio Urbanistica{% endblock header_center_org_name %}
+
+# Descrizione organizzazione in Header
+{% block header_center_org_subname %}Ufficio Urbanistica{% endblock header_center_org_subname %}
+
+# Area icone social in sezione principale Header
+{% block header_center_social %}{% endblock header_center_social %}
+
+# Area "Cerca" in sezione principale Header
+{% block header_center_search %}{% endblock header_center_search %}
+
+# Menu principale in Header
+{% block main_menu %}{% endblock main_menu %}
+
+# Contenuto della pagina, senza padding e margin
+{% block container %}{% endblock container %}
+
+# Contenuto della pagina, centrato, con margin e padding settati
+{% block centered_container %}{% endblock centered_container %}
+
+# Logo Footer
+{% block footer_logo %}
+    <img src="{% static 'logo.svg' %}">
+{% endblock footer_logo %}
+
+# Nome organizzazione in Footer
+{% block footer_org_name %}Ufficio Urbanistica{% endblock footer_org_name %}
+
+# Descrizione organizzazione in Footer
+{% block footer_org_subname %}Ufficio Urbanistica{% endblock footer_org_subname %}
+
+# Prima colonna in sezione centrale in Footer
+{% block first_column %}
+    <div class="col-lg-3 col-md-3 col-sm-6 pb-2">
+        <h5>Amministrazione</h5>
+        <div class="link-list-wrapper">
+            <ul class="footer-list link-list clearfix">
+                <li><a class="list-item" href="#" title="Vai alla pagina: Giunta e consiglio">Giunta e consiglio</a></li>
+                <li><a class="list-item" href="#" title="Vai alla pagina: Aree di competenza">Aree di competenza</a></li>
+                <li><a class="list-item" href="#" title="Vai alla pagina: Dipendenti">Dipendenti</a></li>
+                <li><a class="list-item" href="#" title="Vai alla pagina: Luoghi">Luoghi</a></li>
+                <li><a class="list-item" href="#" title="Vai alla pagina: Associazioni e società partecipate">Associazioni e società partecipate</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock first_column %}
+
+# Seconda colonna in sezione centrale in Footer
+{% block second_column %}
+    <div class="col-lg-3 col-md-3 col-sm-6 pb-2">
+        <h5>Servizi</h5>
+        <div class="link-list-wrapper">
+            <ul class="footer-list link-list clearfix">
+                <li><a class="list-item" href="#" title="Vai alla pagina: Pagamenti">Pagamenti</a></li>
+                <li><a class="list-item" href="#" title="Vai alla pagina: Sostegno">Sostegno</a></li>
+                <li><a class="list-item" href="#" title="Vai alla pagina: Domande e iscrizioni">Domande e iscrizioni</a></li>
+                <li><a class="list-item" href="#" title="Vai alla pagina: Segnalazioni">Segnalazioni</a></li>
+                <li><a class="list-item" href="#" title="Vai alla pagina: Autorizzazioni e concessioni">Autorizzazioni e concessioni</a></li>
+                <li><a class="list-item" href="#" title="Vai alla pagina: Certificati e dichiarazioni">Certificati e dichiarazioni</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock second_column %}
+
+# Terza colonna in sezione centrale in Footer
+{% block third_column %}
+    <div class="col-lg-3 col-md-3 col-sm-6 pb-2">
+        <h5>Novità</h5>
+        <div class="link-list-wrapper">
+            <ul class="footer-list link-list clearfix">
+                <li><a class="list-item" href="#" title="Vai alla pagina: Notizie">Notizie</a></li>
+                <li><a class="list-item" href="#" title="Vai alla pagina: Eventi">Eventi</a></li>
+                <li><a class="list-item" href="#" title="Vai alla pagina: Comunicati stampa">Comunicati stampa</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock third_column %}
+
+# Quarta colonna in sezione centrale in Footer
+{% block fourth_column %}
+    <div class="col-lg-3 col-md-3 col-sm-6">
+        <h5>Documenti</h5>
+        <div class="link-list-wrapper">
+            <ul class="footer-list link-list clearfix">
+                <li><a class="list-item" href="#" title="Vai alla pagina: Progetti e attività">Progetti e attività</a></li>
+                <li><a class="list-item" href="#" title="Vai alla pagina: Delibere, determine e ordinanze">Delibere, determine e ordinanze</a></li>
+                <li><a class="list-item" href="#" title="Vai alla pagina: Bandi">Bandi</a></li>
+                <li><a class="list-item" href="#" title="Vai alla pagina: Concorsi">Concorsi</a></li>
+                <li><a class="list-item" href="#" title="Vai alla pagina: Albo pretorio">Albo pretorio</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock fourth_column %}
+
+# Sezione contatti in Footer
+{% block footer_contacts_section %}
+    <section class="py-4 border-white border-top">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 pb-2">
+                <h5>Contatti</h5>
+                <p>
+                    <strong>Comune di Lorem Ipsum</strong><br> Via Roma 0 - 00000 Lorem Ipsum Codice fiscale / P. IVA: 000000000
+                </p>
+                <div class="link-list-wrapper">
+                    <ul class="footer-list link-list clearfix">
+                        <li><a class="list-item" href="#" title="Vai alla pagina: Posta Elettronica Certificata">Posta Elettronica Certificata</a></li>
+                        <li><a class="list-item" href="#" title="Vai alla pagina: URP - Ufficio Relazioni con il Pubblico">URP - Ufficio Relazioni con il Pubblico</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 pb-2">
+                <h5>Lorem Ipsum</h5>
+            </div>
+            <div class="col-lg-4 col-md-4 pb-2">
+                <div class="pb-2">
+                    <a href="https://docs.italia.it/italia/designers-italia/design-linee-guida-docs/it/stabile/index.html" target="_blank">
+                        <img src="https://developers.italia.it/assets/icons/logo-it.svg">
+                    </a>
+                    <p><small>Il presente sito applice le nuove linee guida di design per i servizi web della PA</small></p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock footer_contacts_section %}
+
+# Striscia bottom in Footer
+{% block footer_bottom %}{% endblock footer_bottom %}
+
+# Javascripts
+{% block bottom_scripts %}{% endblock bottom_scripts %}
+
+# Javascript aggiuntivi a fine pagina
+{% block extra_scripts %}{% endblock extra_scripts %}
+#### END BODY
