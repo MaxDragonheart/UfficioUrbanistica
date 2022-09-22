@@ -1,0 +1,23 @@
+{#% extends 'index_tmp.html' %#}
+{% extends 'base.html' %}
+
+{% load static %}
+{% block page_title %}{{ article.title }} | {{ block.super }}{% endblock page_title %}
+{% block header_center_social %}
+<span>
+        <a class="link-lite-blue-background" href="{{ category.get_absolute_url }}">
+            <strong>{{ category.category_name }}</strong>
+        </a>
+</span>
+{% endblock header_center_social %}
+
+{% block container %}
+
+<div class="container my-2">
+    <div class="article-header">
+        <h1 class="article-title">{{ article.title }}</h1>
+    </div>
+    <article>{{ article.contents|safe }}</article>
+</div>
+
+{% endblock container %}

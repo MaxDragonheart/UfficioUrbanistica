@@ -1,0 +1,38 @@
+.logo-link {}
+.card-deck-style {
+    padding: 0 !important;
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+}
+.card-style {
+    padding: 0 !important;
+    margin: 2px !important;
+    border: 1px solid #06c !important;
+    border-radius: 3px !important;
+}
+.card-body-style {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.card-title-style {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.card-content-style {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.card-btn-style {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.link-white-background {
+    color: #06c !important;
+}
+.link-white-background:hover, .link-lite-blue-background:hover {
+    color: red !important;
+    font-weight: bold !important;
+}
+.link-lite-blue-background {
+    color: #fff !important;
+}

@@ -5,15 +5,24 @@
 {% block container %}
 
     {% for category in category_list %}
-        {% if forloop.first %}<div class="card-deck row">{% endif %}
-            <div class="card" style="width: 18rem;">
-              <div class="card-body text-center">
-                <h5 class="card-title">{{ category.category_name }}</h5>
-                <a href="#" class="btn btn-link">Consulta</a>
+        {% if forloop.first %}<div class="card-deck card-deck-style row d-flex justify-content-center">{% endif %}
+            <div class="card card-style text-center" style="width: 18rem;">
+              <div class="card-body card-body-style">
+                <h3 class="card-title card-title-style">{{ category.category_name }}</h3>
+                <p class="card-content-style">
+                    <a href="{{ category.get_absolute_url }}"
+                       class="btn btn-link card-btn-style link-white-background">
+                        Consulta
+                    </a>
+                </p>
               </div>
             </div>
-        {% if forloop.counter|divisibleby:"3" or forloop.last %}</div>{% endif %}
-        {% if forloop.counter|divisibleby:"3" and not forloop.last %}<div class="card-deck row">{% endif %}
+        {% if forloop.counter|divisibleby:"3" or forloop.last %}
+            </div>
+        {% endif %}
+        {% if forloop.counter|divisibleby:"3" and not forloop.last %}
+            <div class="card-deck card-deck-style row d-flex justify-content-center">
+        {% endif %}
     {% endfor %}
 
 {% endblock container %}

@@ -43,3 +43,21 @@ def single_category(request, slug_category):
             "post_list": post_list,
             }
     return render(request, "single_category.html", context)
+
+
+def single_post(request, slug_post, slug_category):
+    """
+    Con questa funzione visualizzo il singolo post
+    """
+    if request.user.is_staff:
+        article = get_object_or_404(SectionPost, slug_post=slug_post)
+    else:
+        article = get_object_or_404(post_filter, slug_post=slug_post)
+    category = get_object_or_404(Section, slug_category=slug_category)
+    category_article = SectionPost.objects.filter(category=category)
+    context = {
+            "category": category,
+            "article": article,
+            "category_article": category_article
+            }
+    return render(request, "single_post.html", context)

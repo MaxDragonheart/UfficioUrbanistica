@@ -2,30 +2,44 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% block head_meta_title %}{{ category.category_name }} | {{ block.super }}{% endblock head_meta_title %}
-{% block head_title %}{{ category.category_name }} | {{ block.super }}{% endblock head_title %}
-{% block meta_description %}{{ category.page_header }}{% endblock meta_description %}
-{% block opengraph_title %}{{ category.category_name }} | {{ block.super }}{% endblock opengraph_title %}
-{% block opengraph_description %}{{ category.page_header }}{% endblock opengraph_description %}
-{% block opengraph_title_twitter %}{{ category.category_name }} | {{ block.super }}{% endblock opengraph_title_twitter %}
-{% block opengraph_description_twitter %}{{ category.page_header }}{% endblock opengraph_description_twitter %}
+{% block page_title %}{{ category.category_name }} | {{ block.super }}{% endblock page_title %}
+{% block header_center_social %}<strong>{{ category.category_name }}</strong>{% endblock header_center_social %}
 
-{% block page %}
-{{ category.category_name }}
-<hr><hr>
+{% block container %}
+
 {% for post in post_list %}
     {% if post.highlighted %}
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.contents }}</p>
+    <div class="container my-2">
+        <article>{{ post.contents|safe }}</article>
+    </div>
+    {% endif %}
+{% endfor %}
+<hr>
+<div class="text-center">
+    <h3>Ultime 5 notizie</h3>
+</div>
+
+{% for post in post_list %}
+    {% if forloop.first %}<div class="card-deck card-deck-style row d-flex justify-content-center">{% endif %}
+        <div class="card card-style text-center" style="width: 18rem;">
+          <div class="card-body card-body-style">
+            <h4 class="card-title card-title-style">{{ post.title }}</h4>
+            <p><small>{{ post.publishing_date }}</small></p>
+            <p>{{ post.description }}</p>
+            <p class="card-content-style">
+                <a href="{{ post.get_absolute_url }}"
+                   class="btn btn-link card-btn-style link-white-background">
+                    Consulta
+                </a>
+            </p>
+          </div>
+        </div>
+    {% if forloop.counter|divisibleby:"3" or forloop.last %}
+        </div>
+    {% endif %}
+    {% if forloop.counter|divisibleby:"3" and not forloop.last %}
+        <div class="card-deck card-deck-style row d-flex justify-content-center">
     {% endif %}
 {% endfor %}
 
-{% for post in post_list %}
-    {% if not post.highlighted %}
-<h3>{{ post.title }}</h3>
-<p>{{ post.publishing_date }}</p>
-<p>{{ post.description }}</p>
-<hr>
-    {% endif %}
-{% endfor %}
-{% endblock page %}
+{% endblock container %}
