@@ -11,6 +11,7 @@
 # Extra CSS o Javascript
 {% block extra_head %}
     <link rel="icon" href="{% static 'logo.svg' %}">
+    {% include './commons/libraries.html' %}
 {% endblock extra_head %}
 #### END HEAD
 
@@ -22,6 +23,7 @@
 {% block header_center_logo %}
     <img src="{% static 'logo.svg' %}">
 {% endblock header_center_logo %}
+{% block header_center_url %}{% url 'homepage' %}{% endblock header_center_url %}
 
 # Nome organizzazione principale in Header
 {% block header_center_org_name %}Ufficio Urbanistica{% endblock header_center_org_name %}
@@ -48,6 +50,7 @@
 {% block footer_logo %}
     <img src="{% static 'logo.svg' %}">
 {% endblock footer_logo %}
+{% block footer_logo_url %}{% url 'homepage' %}{% endblock footer_logo_url %}
 
 # Nome organizzazione in Footer
 {% block footer_org_name %}Ufficio Urbanistica{% endblock footer_org_name %}
