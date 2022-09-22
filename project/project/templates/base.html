@@ -134,7 +134,12 @@
                 <h5>Area Riservata</h5>
                 <div class="link-list-wrapper">
                     <ul class="footer-list link-list clearfix">
-                        <li><a class="list-item" href="#" title="Accedi all'area riservata">Accedi</a></li>
+                        {% if request.user.is_authenticated %}
+                        <li><a class="list-item" href="{% url 'admin:index' %}" title="Entra nall'area riservata">Entra</a></li>
+                        <li><a class="list-item" href="{% url 'logout' %}" title="Effettua il logout dall'area riservata">Esci</a></li>
+                        {% else %}
+                        <li><a class="list-item" href="{% url 'login' %}" title="Effettua il login dall'area riservata">Accedi</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+  <link rel="stylesheet"
+        href="{% static 'css/login.css' %}">
+{% endblock extra_head %}
+
+{% block container %}
+<div class="container">
+  <div class="text-center">
+    <div class="">
+      <h1 class="">Accedi all'area di amminstrazione</h1>
+    </div>
+
+    <hr>
+
+    <div class="">
+      <p class="">Solo il personale autorizzato può avere accesso. Ogni violazione sarà preseguita secondo i termini di legge vigenti.</p>
+
+      {% if form.errors %}
+      <div class="alert" role="alert">
+        <p class="text-center">Username e password non corrispondono. Riprova.</p>
+        <!-- <p class="py-0"><a href="mailto:joe@example.com?subject=Lost password">Lost username and password?</a></p> -->
+      </div>
+      {% endif %}
+
+      {% if next %}
+          {% if user.is_authenticated %}
+          <p>Il tuo account non ha accesso a questa pagina. Per procedere effettua l\'accesso con un account autorizzato.</p>
+          {% else %}
+          <p>Effettua il l\'accesso per consultare questa pagina.</p>
+          {% endif %}
+      {% endif %}
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <form class="" action="{% url 'login' %}"  method="POST">
+        {% csrf_token %}
+          <div class="row">
+              <div class="col-sm-6">
+                <p>{{ form.username.label_tag }}</p>
+                {{ form.username }}
+              </div>
+              <div class="col-sm-6">
+                <p>{{ form.password.label_tag }}</p>
+                {{ form.password }}
+              </div>
+          </div>
+        <div class="">
+          <input type="submit" class="btn btn-primary my-2" value="Entra">
+          <input type="hidden" name="next" value="{{ next }}">
+        </div>
+      </form>
+
+      {# Assumes you setup the password_reset view in your URLconf #}
+    </div>
+
+  </div>
+</div>
+{% endblock container %}

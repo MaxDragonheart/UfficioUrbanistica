@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'sections',
     'link',
     'media',
+    'usermanager',
 ]
 
 MIDDLEWARE = [
@@ -164,6 +165,13 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Corsheaders settings
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = env('ALLOWED_HOSTS')
+if not DEBUG:
+    CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS')
+
 # Django Tinymce
 TINYMCE_DEFAULT_CONFIG = {
     "height": "800",
@@ -177,3 +185,21 @@ TINYMCE_DEFAULT_CONFIG = {
                 "a11ycheck ltr rtl | showcomments addcomment code",
     "custom_undo_redo_levels": 10,
 }
+
+# Usermanager App
+AUTH_USER_MODEL = 'usermanager.UserProfile'
+ADMIN_PANEL_ROOT = "area-riservata"
+LOGIN_REDIRECT_URL = f"/{ADMIN_PANEL_ROOT}/"
+LOGOUT_REDIRECT_URL = "/"
+
+ADMIN_USERNAME = env('ADMIN_USERNAME')
+ADMIN_PASSWORD = env('ADMIN_PASSWORD')
+DOMAIN_NAME = env('DOMAIN_NAME')
+DOMAIN = env('DOMAIN')
+SITE_TITLE = env('SITE_TITLE')
+SITE_LOGO = env('SITE_LOGO')
+SITE_DESCRIPTION = env('SITE_DESCRIPTION')
+ADDRESS = env('ADDRESS')
+CONTACT_PHONE = env('CONTACT_PHONE')
+CONTACT_EMAIL = env('CONTACT_EMAIL')
+CONTACT_OFFICIAL_EMAIL = env('CONTACT_OFFICIAL_EMAIL')
