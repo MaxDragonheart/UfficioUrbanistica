@@ -87,6 +87,9 @@ def single_post(request, slug_post, slug_category):
 
 
 def search(request):
+    """
+    Con questa funzione consento la ricerca tra le pubblicazioni.
+    """
     template = "search_article.html"
 
     if "q" in request.GET:
