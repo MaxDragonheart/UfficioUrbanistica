@@ -10,7 +10,7 @@
 
 # Extra CSS o Javascript
 {% block extra_head %}
-    <link rel="icon" href="{% static 'logo.svg' %}">
+    <link rel="icon" href="{% static 'logo.png' %}">
     {% include './commons/libraries.html' %}
 {% endblock extra_head %}
 #### END HEAD
@@ -21,7 +21,7 @@
 
 # Header logo principale
 {% block header_center_logo %}
-    <img src="{% static 'logo.svg' %}">
+    <img src="{% static 'logo.png' %}">
 {% endblock header_center_logo %}
 {% block header_center_url %}{% url 'homepage' %}{% endblock header_center_url %}
 
@@ -48,7 +48,7 @@
 
 # Logo Footer
 {% block footer_logo %}
-    <img src="{% static 'logo.svg' %}">
+    <img src="{% static 'logo.png' %}">
 {% endblock footer_logo %}
 {% block footer_logo_url %}{% url 'homepage' %}{% endblock footer_logo_url %}
 
