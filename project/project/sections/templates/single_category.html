@@ -6,21 +6,12 @@
 
 {% block container %}
 
-{% for post in post_list %}
-    {% if post.highlighted %}
+{% for article in post_list %}
+    {% if article.highlighted %}
     <div class="container my-2">
-        <article>{{ post.contents|safe }}</article>
+        <article>{{ article.contents|safe }}</article>
         <div class="">
-            <ul class="">
-            {% for attachment in post.attachment.all %}
-                {% if post.attachment %}
-                    <li>
-                        <a class="link-white-background" href="{{ attachment.file.url }}" title="Scarica {{ attachment }}" target="_blank">{{ attachment }}</a>
-                        Tipo: {{ attachment.extension }}, Dimensione: {{ attachment.size }}
-                    </li>
-                {% endif %}
-            {% endfor %}
-            </ul>
+            {% include './components/download.html' %}
         </div>
     </div>
     {% endif %}
@@ -42,24 +33,24 @@
       </tr>
     </thead>
     <tbody>
-      {% for post in post_list %}
-        {% if not post.highlighted %}
+      {% for article in post_list %}
+        {% if not article.highlighted %}
         <tr>
-          {% if post.is_future %}
+          {% if article.is_future %}
           <td class="text-center" colspan="1">
-            <p><em>{{ post.title }}</em> <span class="text-primary fw-bold">Futuro</span></p>
+            <p><em>{{ article.title }}</em> <span class="text-primary fw-bold">Futuro</span></p>
           </td>
-          {% elif post.draft %}
+          {% elif article.draft %}
           <td class="text-center" colspan="1">
-            <p><em>{{ post.title }}</em> <span class="text-danger fw-bold">Bozza</span></p>
+            <p><em>{{ article.title }}</em> <span class="text-danger fw-bold">Bozza</span></p>
           </td>
           {% else %}
-          <td class="text-center" colspan="1"><p><em>{{ post.title }}</em></p></td>
+          <td class="text-center" colspan="1"><p><em>{{ article.title }}</em></p></td>
           {% endif %}
-          <td class="text-center" colspan="2"><p>{{ post.description }}</p></td>
-          <td class="text-center" colspan="1"><p>{{ post.publishing_date }}</p></td>
+          <td class="text-center" colspan="2"><p>{{ article.description }}</p></td>
+          <td class="text-center" colspan="1"><p>{{ article.publishing_date }}</p></td>
           <td class="text-center" colspan="1">
-              <a type="button" class="btn btn-success" href="{{ post.get_absolute_url }}">Consulta</a>
+              <a type="button" class="btn btn-success" href="{{ article.get_absolute_url }}">Consulta</a>
           </td>
         </tr>
         {% endif %}
