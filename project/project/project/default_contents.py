@@ -16,3 +16,9 @@ posts = [
     ("Sezione 4 Descrizione", "sezione-4-descrizione", "header_default.jpg", post_description, post_contents, True, 1, 4, now(), []),
     ("Sezione 4 Descrizione", "sezione-4-descrizione", "header_default.jpg", post_description, post_contents, True, 1, 4, now(), []),
 ]
+
+media = [
+    ("Documento pdf", "Questo è un documento pdf", "demo_data/read.pdf", True, now()),
+    ("Documento word", "Questo è un documento word", "demo_data/readthedoc.docx", False, now()),
+    ("Documento excel", "Questo è un documento excel", "demo_data/calculus.xlsx", False, now()),
+]
