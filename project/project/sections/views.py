@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.db.models.functions import Now
 from django.core.paginator import Paginator
@@ -83,3 +84,21 @@ def single_post(request, slug_post, slug_category):
             "category_article": category_article
             }
     return render(request, "single_post.html", context)
+
+
+def search(request):
+    template = "search_article.html"
+
+    if "q" in request.GET:
+        querystring = request.GET.get("q")
+        post_list = post_filter.filter(
+                                Q(title__icontains=querystring) |
+                                Q(description__icontains=querystring) |
+                                Q(contents__icontains=querystring) |
+                                Q(category__category_name__icontains=querystring)
+                            )
+
+        context = {"post_list": post_list}
+        return render(request, template, context)
+    else:
+        return render(request, template)

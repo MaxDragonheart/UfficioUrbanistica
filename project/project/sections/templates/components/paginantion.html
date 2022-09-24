@@ -1,0 +1,30 @@
+{% load static %}
+<div class="row">
+  <div class="col">
+    {% if post_list.has_previous %}
+    <div class="row">
+      <div class="col">
+        <p class="text-center"><a class="btn btn-warning btn-sm" role="button" href="?pagina=1">Prima</a></p>
+      </div>
+      <div class="col">
+        <p class="text-center"><a class="btn btn-warning btn-sm" role="button"  href="?pagina={{ post_list.previous_page_number }}">Precedente</a></p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  <div class="col">
+    <p class="text-center">Pagina<br> {{ post_list.number }} di {{ post_list.paginator.num_pages }}</p>
+  </div>
+  <div class="col">
+    {% if post_list.has_next %}
+    <div class="row">
+      <div class="col">
+        <p class="text-center"><a class="btn btn-warning btn-sm" role="button"  href="?pagina={{ post_list.next_page_number }}">Successiva</a></p>
+      </div>
+      <div class="col">
+        <p class="text-center"><a class="btn btn-warning btn-sm" role="button"  href="?pagina={{ post_list.paginator.num_pages }}">Ultima</a></p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
