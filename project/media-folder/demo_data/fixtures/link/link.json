@@ -1,2 +1,80 @@
 [
+{
+  "model": "link.link",
+  "pk": 1,
+  "fields": {
+    "publishing_date": "2022-09-24T18:12:11Z",
+    "updating_date": "2022-09-24T18:12:37.017Z",
+    "timestamp": "2022-09-24T18:12:37.017Z",
+    "title": "Link 1",
+    "description": "Questo è il link 1",
+    "url": "https://www.google.com/",
+    "column": "Colonna 1"
+  }
+},
+{
+  "model": "link.link",
+  "pk": 2,
+  "fields": {
+    "publishing_date": "2022-09-24T18:12:37Z",
+    "updating_date": "2022-09-24T18:13:41.873Z",
+    "timestamp": "2022-09-24T18:13:41.873Z",
+    "title": "Link 2",
+    "description": "Questo è il link 2",
+    "url": "https://www.google2.com/",
+    "column": "Colonna 1"
+  }
+},
+{
+  "model": "link.link",
+  "pk": 3,
+  "fields": {
+    "publishing_date": "2022-09-24T18:13:41Z",
+    "updating_date": "2022-09-24T18:14:09.805Z",
+    "timestamp": "2022-09-24T18:14:09.805Z",
+    "title": "Link 3",
+    "description": "Questo è il link 3",
+    "url": "https://www.google3.com/",
+    "column": "Colonna 2"
+  }
+},
+{
+  "model": "link.link",
+  "pk": 4,
+  "fields": {
+    "publishing_date": "2022-09-24T18:13:41Z",
+    "updating_date": "2022-09-24T18:14:09.805Z",
+    "timestamp": "2022-09-24T18:14:09.805Z",
+    "title": "Link 4",
+    "description": "Questo è il link 4",
+    "url": "https://www.google4.com/",
+    "column": "Colonna 2"
+  }
+},
+{
+  "model": "link.link",
+  "pk": 5,
+  "fields": {
+    "publishing_date": "2022-09-24T18:13:41Z",
+    "updating_date": "2022-09-24T18:14:09.805Z",
+    "timestamp": "2022-09-24T18:14:09.805Z",
+    "title": "Link 5",
+    "description": "Questo è il link 5",
+    "url": "https://www.google5.com/",
+    "column": "Colonna 2"
+  }
+},
+{
+  "model": "link.link",
+  "pk": 6,
+  "fields": {
+    "publishing_date": "2022-09-24T18:13:41Z",
+    "updating_date": "2022-09-24T18:14:09.805Z",
+    "timestamp": "2022-09-24T18:14:09.805Z",
+    "title": "Link 6",
+    "description": "Questo è il link 6",
+    "url": "https://www.google6.com/",
+    "column": "Colonna 3"
+  }
+}
 ]
