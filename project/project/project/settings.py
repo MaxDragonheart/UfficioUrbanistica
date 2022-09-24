@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'link',
     'media',
     'usermanager',
+    'core',
 ]
 
 MIDDLEWARE = [
