@@ -1,0 +1,43 @@
+{% load static %}
+<div class="table-responsive">
+  <table class="table about-table">
+    <thead>
+      <tr>
+        <th class="text-center" colspan="4">
+          <h3 class="my-0 py-1"><strong>Elenco delle pubblicazioni</strong></h3>
+        </th>
+        <th class="text-center" colspan="2">{% include './search.html' %}</th>
+      </tr>
+      <tr>
+        <th class="text-center" colspan="1">Titolo</th>
+        <th class="text-center" colspan="2">Descrizione</th>
+        <th class="text-center" colspan="1">Sezione</th>
+        <th class="text-center" colspan="1">Data di pubblicazione</th>
+        <th class="text-center" colspan="1"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in post_list %}
+        <tr>
+          {% if post.is_future %}
+          <td class="text-center" colspan="1">
+            <p><em>{{ post.title }}</em> <span class="text-primary fw-bold">Futuro</span></p>
+          </td>
+          {% elif post.draft %}
+          <td class="text-center" colspan="1">
+            <p><em>{{ post.title }}</em> <span class="text-danger fw-bold">Bozza</span></p>
+          </td>
+          {% else %}
+          <td class="text-center" colspan="1"><p><em>{{ post.title }}</em></p></td>
+          {% endif %}
+          <td class="text-center" colspan="2"><p>{{ post.description }}</p></td>
+          <td class="text-center" colspan="1"><h4>{{ post.category }}</h4></td>
+          <td class="text-center" colspan="1"><p>{{ post.publishing_date }}</p></td>
+          <td class="text-center" colspan="1">
+              <a type="button" class="btn btn-success" href="{{ post.get_absolute_url }}">Consulta</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
