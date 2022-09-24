@@ -1,0 +1,46 @@
+[
+{
+  "model": "sections.section",
+  "pk": 1,
+  "fields": {
+    "publishing_date": "2022-09-24T17:54:59.055Z",
+    "updating_date": "2022-09-24T17:54:59.063Z",
+    "timestamp": "2022-09-24T17:54:59.063Z",
+    "category_name": "Sezione 1",
+    "slug_category": "sezione-1"
+  }
+},
+{
+  "model": "sections.section",
+  "pk": 2,
+  "fields": {
+    "publishing_date": "2022-09-24T17:55:03.623Z",
+    "updating_date": "2022-09-24T17:55:03.630Z",
+    "timestamp": "2022-09-24T17:55:03.630Z",
+    "category_name": "Sezione 2",
+    "slug_category": "sezione-2"
+  }
+},
+{
+  "model": "sections.section",
+  "pk": 3,
+  "fields": {
+    "publishing_date": "2022-09-24T17:55:11.025Z",
+    "updating_date": "2022-09-24T17:55:11.028Z",
+    "timestamp": "2022-09-24T17:55:11.028Z",
+    "category_name": "Sezione 3",
+    "slug_category": "sezione-3"
+  }
+},
+{
+  "model": "sections.section",
+  "pk": 4,
+  "fields": {
+    "publishing_date": "2022-09-24T17:55:17.631Z",
+    "updating_date": "2022-09-24T17:55:17.633Z",
+    "timestamp": "2022-09-24T17:55:17.633Z",
+    "category_name": "Sezione 4",
+    "slug_category": "sezione-4"
+  }
+}
+]
