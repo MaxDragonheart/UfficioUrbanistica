@@ -119,14 +119,14 @@ class OGCLayer(BaseModelPost, OpenLayersMapParameters):
         fs, fs_token, paths = get_fs_token_paths(destination_folder)
         fs.mkdirs(path=destination_folder, exist_ok=True)
 
-        # # Get thumbnail from WMS
-        # img_path = get_wms_thumbnail(
-        #     wms_url=self.ogc_layer_path.complete_url_wms,
-        #     service_version="1.3.0",
-        #     layer_name=self.ogc_layer_name,
-        #     output_data_folder=destination_folder,
-        # )
-        # self.header_image = f"{WMS_THUMBNAILS}/{today_folder}/{img_path.stem}{img_path.suffix}"
+        # Get thumbnail from WMS
+        img_path = get_wms_thumbnail(
+            wms_url=self.complete_url_wms,
+            service_version="1.3.0",
+            layer_name=self.ogc_layer_name,
+            output_data_folder=destination_folder,
+        )
+        self.header_image = f"{WMS_THUMBNAILS}/{today_folder}/{img_path.stem}{img_path.suffix}"
 
         # Get WMS's BBOX
         self.ogc_bbox = list(get_wms_bbox(
