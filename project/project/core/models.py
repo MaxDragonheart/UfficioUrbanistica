@@ -1,5 +1,4 @@
 from django.db import models
-from django.conf import settings
 from django.contrib.sites.models import Site
 from tinymce import models as tinymce_models
 

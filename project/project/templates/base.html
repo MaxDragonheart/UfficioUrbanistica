@@ -10,7 +10,11 @@
 
 # Extra CSS o Javascript
 {% block extra_head %}
-    <link rel="icon" href="{% static 'logo.png' %}">
+    {% if DEBUG %}
+        <link rel="icon" href="{% for item in data %}{{ item.logo.url }}{% endfor %}">
+    {% else %}
+        <link rel="icon" href="{{ protocol }}://{% for item in data %}{{ item.site.domain }}{{ item.logo.url }}{% endfor %}">
+    {% endif %}
     {% include './commons/libraries.html' %}
 {% endblock extra_head %}
 #### END HEAD
@@ -21,7 +25,11 @@
 
 # Header logo principale
 {% block header_center_logo %}
-    <img src="{% static 'logo.png' %}">
+    {% if DEBUG %}
+        <img src="{% for item in data %}{{ item.logo.url }}{% endfor %}">
+    {% else %}
+        <img src="{{ protocol }}://{% for item in data %}{{ item.site.domain }}{{ item.logo.url }}{% endfor %}">
+    {% endif %}
 {% endblock header_center_logo %}
 {% block header_center_url %}{% url 'homepage' %}{% endblock header_center_url %}
 
@@ -48,7 +56,11 @@
 
 # Logo Footer
 {% block footer_logo %}
-    <img src="{% static 'logo.png' %}">
+    {% if DEBUG %}
+        <img src="{% for item in data %}{{ item.logo.url }}{% endfor %}">
+    {% else %}
+        <img src="{{ protocol }}://{% for item in data %}{{ item.site.domain }}{{ item.logo.url }}{% endfor %}">
+    {% endif %}
 {% endblock footer_logo %}
 {% block footer_logo_url %}{% url 'homepage' %}{% endblock footer_logo_url %}
 
