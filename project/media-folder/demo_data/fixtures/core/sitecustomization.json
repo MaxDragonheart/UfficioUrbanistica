@@ -1,0 +1,18 @@
+[
+{
+  "model": "core.sitecustomization",
+  "pk": 1,
+  "fields": {
+    "publishing_date": "2022-09-25T07:02:25Z",
+    "updating_date": "2022-09-25T07:38:09.985Z",
+    "timestamp": "2022-09-25T07:09:03.155Z",
+    "site": 1,
+    "title": "Ufficio Urbanistica",
+    "subtitle": "Null Island Municipality",
+    "logo": "demo_data/logo.png",
+    "header_image": "demo_data/header_default.jpg",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "contacts": "<p><strong>Ufficio Urbanistica</strong></p>\r\n<p>Via della geolocalizzazione, 1, Null Island, 9999888</p>\r\n<p>Telefono: +39 098765</p>\r\n<p>mail: <a href=\"mailto:ufficiourbanistica@ufficio.urb\">ufficiourbanistica@ufficio.urb</a></p>\r\n<p>pec: <a href=\"mailto:ufficiourbanistica@pec.urb\">ufficiourbanistica@pec.urb</a></p>\r\n<p>&nbsp;</p>"
+  }
+}
+]

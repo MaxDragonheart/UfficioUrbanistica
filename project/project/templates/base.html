@@ -3,14 +3,18 @@
 {% load static %}
 
 #### START HEAD
-{% block page_title %}Ufficio Urbanistica{% endblock page_title %}
-{% block page_meta_description %}Descrizione Ufficio Urbanistica{% endblock page_meta_description %}
+{% block page_title %}{% for item in data %}{{ item.title }}{% endfor %}{% endblock page_title %}
+{% block page_meta_description %}{% for item in data %}{{ item.description }}{% endfor %}{% endblock page_meta_description %}
 {% block page_meta_keywords %}{% endblock page_meta_keywords %}
 {% block page_meta_robots %}all{% endblock page_meta_robots %}"
 
 # Extra CSS o Javascript
 {% block extra_head %}
-    <link rel="icon" href="{% static 'logo.svg' %}">
+    {% if DEBUG %}
+        <link rel="icon" href="{% for item in data %}{{ item.logo.url }}{% endfor %}">
+    {% else %}
+        <link rel="icon" href="{{ protocol }}://{% for item in data %}{{ item.site.domain }}{{ item.logo.url }}{% endfor %}">
+    {% endif %}
     {% include './commons/libraries.html' %}
 {% endblock extra_head %}
 #### END HEAD
@@ -21,15 +25,19 @@
 
 # Header logo principale
 {% block header_center_logo %}
-    <img src="{% static 'logo.svg' %}">
+    {% if DEBUG %}
+        <img src="{% for item in data %}{{ item.logo.url }}{% endfor %}">
+    {% else %}
+        <img src="{{ protocol }}://{% for item in data %}{{ item.site.domain }}{{ item.logo.url }}{% endfor %}">
+    {% endif %}
 {% endblock header_center_logo %}
 {% block header_center_url %}{% url 'homepage' %}{% endblock header_center_url %}
 
 # Nome organizzazione principale in Header
-{% block header_center_org_name %}Ufficio Urbanistica{% endblock header_center_org_name %}
+{% block header_center_org_name %}{% for item in data %}{{ item.title }}{% endfor %}{% endblock header_center_org_name %}
 
 # Descrizione organizzazione in Header
-{% block header_center_org_subname %}Ufficio Urbanistica{% endblock header_center_org_subname %}
+{% block header_center_org_subname %}{% for item in data %}{{ item.subtitle }}{% endfor %}{% endblock header_center_org_subname %}
 
 # Area icone social in sezione principale Header
 {% block header_center_social %}{% endblock header_center_social %}
@@ -48,15 +56,19 @@
 
 # Logo Footer
 {% block footer_logo %}
-    <img src="{% static 'logo.svg' %}">
+    {% if DEBUG %}
+        <img src="{% for item in data %}{{ item.logo.url }}{% endfor %}">
+    {% else %}
+        <img src="{{ protocol }}://{% for item in data %}{{ item.site.domain }}{{ item.logo.url }}{% endfor %}">
+    {% endif %}
 {% endblock footer_logo %}
 {% block footer_logo_url %}{% url 'homepage' %}{% endblock footer_logo_url %}
 
 # Nome organizzazione in Footer
-{% block footer_org_name %}Ufficio Urbanistica{% endblock footer_org_name %}
+{% block footer_org_name %}{% for item in data %}{{ item.title }}{% endfor %}{% endblock footer_org_name %}
 
 # Descrizione organizzazione in Footer
-{% block footer_org_subname %}Ufficio Urbanistica{% endblock footer_org_subname %}
+{% block footer_org_subname %}{% for item in data %}{{ item.subtitle }}{% endfor %}{% endblock footer_org_subname %}
 
 # Prima colonna in sezione centrale in Footer
 {% block first_column %}
@@ -120,15 +132,9 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 pb-2">
                 <h5>Contatti</h5>
-                <p>
-                    <strong>Comune di Lorem Ipsum</strong><br> Via Roma 0 - 00000 Lorem Ipsum Codice fiscale / P. IVA: 000000000
-                </p>
-                <div class="link-list-wrapper">
-                    <ul class="footer-list link-list clearfix">
-                        <li><a class="list-item" href="#" title="Vai alla pagina: Posta Elettronica Certificata">Posta Elettronica Certificata</a></li>
-                        <li><a class="list-item" href="#" title="Vai alla pagina: URP - Ufficio Relazioni con il Pubblico">URP - Ufficio Relazioni con il Pubblico</a></li>
-                    </ul>
-                </div>
+                <article class="contacts">
+                    {% for item in data %}{{ item.contacts|safe }}{% endfor %}
+                </article>
             </div>
             <div class="col-lg-4 col-md-4 pb-2">
                 <h5>Area Riservata</h5>

@@ -1,0 +1,41 @@
+[
+{
+  "model": "media.fileupload",
+  "pk": 1,
+  "fields": {
+    "publishing_date": "2022-09-24T17:49:17Z",
+    "updating_date": "2022-09-24T17:49:36.377Z",
+    "timestamp": "2022-09-24T17:49:36.377Z",
+    "name": "Documento excel",
+    "description": "Questo è un",
+    "file": "demo_data/calculus.xlsx",
+    "highlighted": true
+  }
+},
+{
+  "model": "media.fileupload",
+  "pk": 2,
+  "fields": {
+    "publishing_date": "2022-09-24T17:49:36Z",
+    "updating_date": "2022-09-24T17:49:51.287Z",
+    "timestamp": "2022-09-24T17:49:51.287Z",
+    "name": "Documento pdf",
+    "description": "Questo è un pdf",
+    "file": "demo_data/read.pdf",
+    "highlighted": false
+  }
+},
+{
+  "model": "media.fileupload",
+  "pk": 3,
+  "fields": {
+    "publishing_date": "2022-09-24T17:49:51Z",
+    "updating_date": "2022-09-24T17:50:09.978Z",
+    "timestamp": "2022-09-24T17:50:09.978Z",
+    "name": "Documento word",
+    "description": "Questo è un Microsoft Word",
+    "file": "demo_data/readthedoc.docx",
+    "highlighted": false
+  }
+}
+]

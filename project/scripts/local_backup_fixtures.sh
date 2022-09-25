@@ -12,6 +12,10 @@ echo "- make fixtures for Django's standard apps"
 poetry run python3 ../project/manage.py dumpdata sites --indent 2 > ../project/fixtures/sites.json
 poetry run python3 ../project/manage.py dumpdata flatpages --indent 2 > ../project/fixtures/flatpages.json
 
+# Core
+echo "- make fixtures for Core"
+poetry run python3 ../project/manage.py dumpdata core.sitecustomization --indent 2 > ../project/fixtures/core/sitecustomization.json
+
 # Link
 echo "- make fixtures for Link"
 poetry run python3 ../project/manage.py dumpdata link.link --indent 2 > ../project/fixtures/link/link.json
