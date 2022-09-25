@@ -12,14 +12,15 @@ class SiteCustomization(TimeManager):
     create the informations useful to describe the website.
     """
     site = models.ForeignKey(Site, on_delete=models.CASCADE, related_name="related_site", default=1)
-    site_title = models.CharField(max_length=250, blank=False, null=False)
-    site_subtitle = models.CharField(max_length=250, blank=False, null=False)
-    site_logo = models.ImageField(upload_to=settings.STATICFILES_DIRS, blank=False, null=False)
-    site_description = models.CharField(max_length=100, blank=False, null=False)
+    title = models.CharField(max_length=250, blank=False, null=False)
+    subtitle = models.CharField(max_length=250, blank=False, null=False)
+    logo = models.ImageField(upload_to='uploads/site', blank=False, null=False)
+    header_image = models.ImageField(upload_to='uploads/site', blank=False, null=False)
+    description = models.CharField(max_length=100, blank=False, null=False)
     contacts = tinymce_models.HTMLField(blank=False, null=False)
 
     def __str__(self):
-        return self.site_title
+        return self.title
 
     class Meta:
         verbose_name = "Personalizza il sito"
