@@ -168,6 +168,10 @@ STATICFILES_DIRS = [
         BASE_DIR / 'static',
     ]
 
+UPLOADED_IMAGE_FOLDER = 'images/%Y/%m/%d/'
+UPLOADED_DOCUMENT_FOLDER = 'documents/%Y/%m/%d/'
+UPLOADED_GISDATA_FOLDER = 'gis-data/%Y/%m/%d/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

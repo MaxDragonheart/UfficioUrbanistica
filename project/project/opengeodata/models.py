@@ -97,7 +97,7 @@ class OGCLayer(BaseModelPost, OpenLayersMapParameters):
         elif self.is_raster:
             url = f"{self.geoserver_domain.domain}/geoserver/{self.geoserver_workspace.workspace}/wcs"
         else:
-            url = ""
+            url = "Set if is vector or raster!"
 
         return url
 
@@ -119,24 +119,24 @@ class OGCLayer(BaseModelPost, OpenLayersMapParameters):
         fs, fs_token, paths = get_fs_token_paths(destination_folder)
         fs.mkdirs(path=destination_folder, exist_ok=True)
 
-        # Get thumbnail from WMS
-        img_path = get_wms_thumbnail(
-            wms_url=self.ogc_layer_path.complete_url_wms,
-            service_version="1.3.0",
-            layer_name=self.ogc_layer_name,
-            output_data_folder=destination_folder,
-        )
-        self.header_image = f"{WMS_THUMBNAILS}/{today_folder}/{img_path.stem}{img_path.suffix}"
+        # # Get thumbnail from WMS
+        # img_path = get_wms_thumbnail(
+        #     wms_url=self.ogc_layer_path.complete_url_wms,
+        #     service_version="1.3.0",
+        #     layer_name=self.ogc_layer_name,
+        #     output_data_folder=destination_folder,
+        # )
+        # self.header_image = f"{WMS_THUMBNAILS}/{today_folder}/{img_path.stem}{img_path.suffix}"
 
-        # Get WMS's BBOX
-        self.ogc_bbox = list(get_wms_bbox(
-            wms_url=self.ogc_layer_path.complete_url_wms,
-            service_version="1.3.0",
-            layer_name=self.ogc_layer_name
-        ))
+        # # Get WMS's BBOX
+        # self.ogc_bbox = list(get_wms_bbox(
+        #     wms_url=self.ogc_layer_path.complete_url_wms,
+        #     service_version="1.3.0",
+        #     layer_name=self.ogc_layer_name
+        # ))
 
-        # Get BBOX's centroid
-        self.ogc_centroid = list(get_centroid_coords(self.ogc_bbox))
+        # # Get BBOX's centroid
+        # self.ogc_centroid = list(get_centroid_coords(self.ogc_bbox))
 
         # Save all
         super(OGCLayer, self).save(*args, **kwargs)
