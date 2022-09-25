@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block component-style %}
+  {% include './gis_lib.html' %}
+{% endblock component-style %}
+
+{% block page %}
+
+<div class="map-container">
+
+  <div class="map" id='map'></div>
+
+  <div class="map-controls">
+    {% block basemap-controls %}{% endblock basemap-controls %}
+    {% block wms-controls %}{% endblock wms-controls %}
+  </div>
+
+</div>
+
+{% endblock page %}
+
+{% block page-script %}
+  {% block map-script %}
+  <script type="text/javascript">
+
+    var map = new ol.Map({
+      target: 'map',
+      controls: ol.control.defaults({
+        attribution: false
+      }),
+    });
+
+    getMouseCoordinates();
+
+    var coordinates = document.createElement('div');
+    coordinates.className = 'coordinates-container';
+    coordinates.innerHTML = "<p class='text-coordinates'>"
+      + "lon: <span id='lon'>000.00000</span> | "
+      + "lat: <span id='lat'>000.00000</span>"
+      + "</p>"
+
+    var scaleLineArea = document.createElement('div');
+    scaleLineArea.className = 'scaleline-object';
+    scaleLineArea.id = 'custom-scale-line'
+
+    var scaleLineContainer = document.createElement('div');
+    scaleLineContainer.className = 'custom-scaleline-container';
+    scaleLineContainer.appendChild(scaleLineArea);
+
+    var mensura = document.createElement('div')
+    mensura.className = 'ol-control ol-unselectable mensura';
+    mensura.appendChild(coordinates);
+    mensura.appendChild(scaleLineContainer);
+    var mensuraPanel = new ol.control.Control({
+      element: mensura
+    });
+    map.addControl(mensuraPanel);
+
+    var scaleLine = new ol.control.ScaleLine({
+      className: 'scaleline-object',
+      target: document.getElementById('custom-scale-line'),
+      units: 'metric',
+      bar: true,
+      steps: 4,
+      text: true,
+      minWidth: 150,
+    });
+    map.addControl(scaleLine);
+
+    // TODO Uncaught TypeError: t.element.setMap is not a function
+    // var fullScreen = new ol.control.FullScreen({
+    //   className: 'ol-full-screen',
+    //   tipLabel: 'Toggle full-screen'
+    // });
+    // map.addControl(fullScreen);
+
+    var attribution = new ol.control.Attribution({
+      className: 'ol-attribution',
+      label: 'a',
+      collapsible: true,
+      collapsed: true,
+      target: document.getElementById('map-attribution'),
+    });
+    map.addControl(attribution);
+
+    var view = new ol.View({
+{% if single_object.set_zoom_level %}
+      center: ol.proj.fromLonLat([{{ single_object.map_center_longitude }},{{ single_object.map_center_latitude }}]),
+      zoom: {{ single_object.set_zoom_level }},
+      maxZoom: {{ single_object.set_max_zoom }},
+      minZoom: {{ single_object.set_min_zoom }}
+{% else %}
+      center: ol.proj.fromLonLat([14.239649, 40.842906]),
+      zoom: 8
+{% endif %}
+    });
+    map.setView(view);
+
+  </script>
+  {% endblock map-script %}
+
+  {% block test-script %}{% endblock test-script %}
+
+  {% block wms-script %}{% endblock wms-script %}
+
+  {% block webgis-script %}{% endblock webgis-script %}
+
+{% endblock page-script %}

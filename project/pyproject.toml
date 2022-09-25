@@ -17,6 +17,10 @@ djangorestframework-gis = "^1.0"
 django-tinymce = "^3.5.0"
 Pillow = "^9.2.0"
 design-django-theme = "^2.0.3.post2"
+geopandas = "^0.11.1"
+OWSLib = "^0.27.2"
+Shapely = "^1.8.4"
+fsspec = "^2022.8.2"
 
 
 [build-system]

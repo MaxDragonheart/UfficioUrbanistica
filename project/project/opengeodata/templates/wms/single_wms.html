@@ -1,0 +1,102 @@
+{% extends 'gis_base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block wms-controls %}
+
+<div class="layer-control">
+
+  <div class="row control-box">
+    <div class="col-5 checkbox">
+      <p class="">{{ single_object.title }}</p>
+    </div>
+    <div class="col-2 text-end">
+      <!-- <div class="item-info" onclick="showHide('WMS{{ single_object.pk }}info')">
+        <i class="fas fa-info"></i>
+      </div> -->
+    </div>
+    <div class="col-2 text-end">
+{% if single_object.ogc_legend %}
+      <a class="item-legend" data-bs-toggle="collapse" href="#WMS{{ single_object.pk }}legend"
+          role="button" aria-expanded="false" aria-controls="WMS{{ single_object.pk }}legend"
+          data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% translate "Legenda" %}">
+          <i class="fas fa-book"></i>
+      </a>
+{% endif %}
+    </div>
+    <div class="col-2 text-end">
+      <a class="item-controls" data-bs-toggle="collapse" href="#WMS{{ single_object.pk }}controls"
+          role="button" aria-expanded="false" aria-controls="WMS{{ single_object.pk }}controls"
+          data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% translate "Controlli" %}">
+          <i class="fas fa-cogs"></i>
+      </a>
+    </div>
+
+  </div>
+
+  <div class="collapse" id="WMS{{ single_object.pk }}controls">
+    <div class="slider-container">
+      <input type="range" class="form-range"
+              min="0" max="100" value="100" id="WMS{{ single_object.pk }}slider">
+      <label class="">{% translate "Trasparenza" %}: <span id="OUTPUT{{ single_object.pk }}"></span> %</label>
+    </div>
+  </div>
+
+{% if single_object.ogc_legend %}
+  <div class="collapse" id="WMS{{ single_object.pk }}legend">
+    <div id="legend{{ single_object.pk }}"></div>
+  </div>
+{% endif %}
+
+  <!-- <div class="" id="WMS{{ single_object.pk }}info" >
+    info
+  </div> -->
+
+  <table class="table table-striped" id="onclickinfo{{ single_object.pk }}"></table>
+
+</div>
+
+{% endblock wms-controls %}
+
+{% block wms-script %}
+<script type="text/javascript">
+
+  var osm = new ol.layer.Tile({
+    title: 'OSM',
+    source: new ol.source.OSM(),
+    zIndex: 0
+  });
+  map.addLayer(osm);
+
+  var ogc{{ single_object.pk }} = new ol.layer.Tile({
+    title: '{{ single_object.title }}',
+    source: new ol.source.TileWMS({
+      url: '{{ single_object.ogc_layer_path.complete_url_wms }}',
+      params: {
+        'LAYERS': '{{ single_object.ogc_layer_name }}',
+        // 'STYLES': null,
+      }
+    }),
+    minZoom: 0,
+    maxZoom: 28,
+    zIndex: 1,
+    opacity: 1.0
+  });
+  map.addLayer(ogc{{ single_object.pk }});
+
+  var boundingBox = createBBoxLayer(
+    {{ single_object.ogc_bbox }},
+    '{{ single_object.title }}'
+  );
+  map.addLayer(boundingBox);
+
+  zoomOnLayer(boundingBox,10,10,10,10,50);
+
+  layerOpacity(ogc{{ single_object.pk }}, 'WMS{{ single_object.pk }}slider', 'OUTPUT{{ single_object.pk }}');
+
+  getElementInfo('onclickinfo{{ single_object.pk }}', ogc{{ single_object.pk }}, '{{ single_object.title }}');
+  getElementLegendImg('legend{{ single_object.pk }}', ogc{{ single_object.pk }}, '{{ single_object.ogc_layer_path.complete_url_wms }}', '{{ single_object.ogc_layer_name }}');
+  // getElementLegend('legend{{ single_object.pk }}', ogc);
+
+</script>
+{% endblock wms-script %}
