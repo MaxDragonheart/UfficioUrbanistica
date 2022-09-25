@@ -40,7 +40,13 @@
 {% block header_center_org_subname %}{% for item in data %}{{ item.subtitle }}{% endfor %}{% endblock header_center_org_subname %}
 
 # Area icone social in sezione principale Header
-{% block header_center_social %}{% endblock header_center_social %}
+{% block header_center_social %}
+<span>
+    <a class="link-lite-blue-background" href="#" title="Vai alla pagina: Map Viewer">
+        <strong>Map Viewer</strong>
+    </a>
+</span>
+{% endblock header_center_social %}
 
 # Area "Cerca" in sezione principale Header
 {% block header_center_search %}{% endblock header_center_search %}

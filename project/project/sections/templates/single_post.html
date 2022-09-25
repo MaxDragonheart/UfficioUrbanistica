@@ -4,7 +4,7 @@
 {% block page_title %}{{ article.title }} | {{ block.super }}{% endblock page_title %}
 {% block header_center_social %}
 <span>
-        <a class="link-lite-blue-background" href="{{ category.get_absolute_url }}">
+        <a class="link-lite-blue-background" href="{{ category.get_absolute_url }}" title="Vai alla pagina: {{ category.category_name }}">
             <strong>{{ category.category_name }}</strong>
         </a>
 </span>
