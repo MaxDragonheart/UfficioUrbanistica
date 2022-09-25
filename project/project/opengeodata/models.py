@@ -135,8 +135,8 @@ class OGCLayer(BaseModelPost, OpenLayersMapParameters):
             layer_name=self.ogc_layer_name
         ))
 
-        # # Get BBOX's centroid
-        # self.ogc_centroid = list(get_centroid_coords(self.ogc_bbox))
+        # Get BBOX's centroid
+        self.ogc_centroid = list(get_centroid_coords(self.ogc_bbox))
 
         # Save all
         super(OGCLayer, self).save(*args, **kwargs)
