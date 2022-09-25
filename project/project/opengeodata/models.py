@@ -6,7 +6,7 @@ from django.contrib.gis.db import models
 from django.urls import reverse
 
 from abstracts.models import TimeManager, BaseModelPost, ModelPost
-from section.models import Section
+from sections.models import Section
 from fsspec import get_fs_token_paths
 
 from .utils import get_wms_bbox, get_centroid_coords, get_wms_thumbnail, WMS_THUMBNAILS
@@ -85,9 +85,6 @@ class OGCLayer(BaseModelPost, OpenLayersMapParameters):
     ogc_legend = models.BooleanField(default=False)
     is_vector = models.BooleanField(default=False)
     is_raster = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.ogc_layer_name
 
     @property
     def complete_url_wms(self):
