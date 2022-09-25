@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$390000$ZVp6F7VjIDy9M1DKJ5czmC$PKucmn3++FnOiOgpPWrHkdLQKnLPXpU0hsWkLVM8Z9s=",
-    "last_login": "2022-09-24T18:10:52.294Z",
+    "last_login": "2022-09-24T19:02:06.744Z",
     "is_superuser": true,
     "username": "ufficio",
     "first_name": "",

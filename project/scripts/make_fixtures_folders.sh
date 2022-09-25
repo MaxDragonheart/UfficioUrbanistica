@@ -5,6 +5,6 @@ echo "# Move into parent folder"
 cd ..
 pwd
 echo "# Create fixtures folders"
-mkdir -p project/fixtures/link project/fixtures/media project/fixtures/sections project/fixtures/usermanager
+mkdir -p project/fixtures/link project/fixtures/media project/fixtures/sections project/fixtures/usermanager project/fixtures/core
 
 echo "Folders created!"

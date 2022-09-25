@@ -92,6 +92,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
+                'core.context_processors.site_customization',
                 'link.context_processors.links_column1',
                 'link.context_processors.links_column2',
                 'link.context_processors.links_column3',
