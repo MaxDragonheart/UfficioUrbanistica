@@ -42,7 +42,7 @@ class OGCLayerAdmin(admin.ModelAdmin):
 
 
 class WebGISProjectAdmin(admin.ModelAdmin):
-    list_display = ["title", "publishing_date", "updating_date", "highlighted", "draft"]
+    list_display = ["title", "description", "publishing_date", "updating_date", "highlighted", "draft"]
     list_filter = ["publishing_date"]
     search_fields = ["title"]
     prepopulated_fields = {"slug_post": ("title",)}
@@ -50,13 +50,12 @@ class WebGISProjectAdmin(admin.ModelAdmin):
                 ("Header", {"fields": ["title", "slug_post", "header_image", "description"]}),
                 ("Contents", {"fields": ["contents", "categories"]}),
                 ("Options", {"fields": ["draft", "highlighted", "publishing_date"]}),
-                #("Basemap", {"fields": ["basemap1", "basemap2", "basemap3"]}),
                 ("OpenLayers Parameters",
                  {
                      "classes": ("collapse",),
                      "fields":
-                      ["map_scaleline", "map_attribution", "map_center_longitude",
-                       "map_center_latitude", "set_max_zoom", "set_min_zoom", "set_zoom_level"
+                      ["map_scaleline", "map_center_longitude", "map_center_latitude", "set_max_zoom", "set_min_zoom",
+                       "set_zoom_level"
                        ]
                   }
                  ),
