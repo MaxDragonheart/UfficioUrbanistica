@@ -5,6 +5,7 @@ from django.urls import path, include
 urlpatterns = [
     path('', include('sections.urls')),
     path('user/', include('usermanager.urls')),
+    path('open-geodata/', include('opengeodata.urls')),
 ]
 
 if settings.DEBUG:

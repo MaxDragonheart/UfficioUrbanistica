@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'media',
     'usermanager',
     'core',
+    'opengeodata',
 ]
 
 MIDDLEWARE = [
