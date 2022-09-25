@@ -128,12 +128,12 @@ class OGCLayer(BaseModelPost, OpenLayersMapParameters):
         # )
         # self.header_image = f"{WMS_THUMBNAILS}/{today_folder}/{img_path.stem}{img_path.suffix}"
 
-        # # Get WMS's BBOX
-        # self.ogc_bbox = list(get_wms_bbox(
-        #     wms_url=self.ogc_layer_path.complete_url_wms,
-        #     service_version="1.3.0",
-        #     layer_name=self.ogc_layer_name
-        # ))
+        # Get WMS's BBOX
+        self.ogc_bbox = list(get_wms_bbox(
+            wms_url=self.complete_url_wms,
+            service_version="1.3.0",
+            layer_name=self.ogc_layer_name
+        ))
 
         # # Get BBOX's centroid
         # self.ogc_centroid = list(get_centroid_coords(self.ogc_bbox))
