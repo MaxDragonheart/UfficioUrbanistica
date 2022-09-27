@@ -17,7 +17,7 @@
       minZoom: {{ wms.set_min_zoom }},
       maxZoom: {{ wms.set_max_zoom }},
       zIndex: {% if wms.set_index %}{{ wms.set_index }}{% else %}1{% endif %},
-      //opacity: {{ wms.set_opacity }}
+      // opacity: {{ wms.set_opacity }},
     });
 
     layerOpacity(wms{{ wms.pk }}, 'WMS{{ wms.pk }}slider', 'OUTPUT{{ wms.pk }}');
