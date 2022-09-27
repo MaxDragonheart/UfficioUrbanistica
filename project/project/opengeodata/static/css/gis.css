@@ -1,5 +1,6 @@
-.site-main {
-  height: 80vh;
+.main-body {
+  height: 80vh !important;
+  padding: 5px !important;
 }
 .map-container {
   display: grid;
