@@ -1,5 +1,4 @@
 {% extends 'gis_base.html' %}
-{% load i18n %}
 {% load static %}
 
 {% block wms-controls %}
@@ -19,7 +18,7 @@
 {% if single_object.ogc_legend %}
       <a class="item-legend" data-bs-toggle="collapse" href="#WMS{{ single_object.pk }}legend"
           role="button" aria-expanded="false" aria-controls="WMS{{ single_object.pk }}legend"
-          data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% translate "Legenda" %}">
+          data-bs-toggle="tooltip" data-bs-placement="bottom" title="Legenda">
           <i class="fas fa-book"></i>
       </a>
 {% endif %}
@@ -27,7 +26,7 @@
     <div class="col-2 text-end">
       <a class="item-controls" data-bs-toggle="collapse" href="#WMS{{ single_object.pk }}controls"
           role="button" aria-expanded="false" aria-controls="WMS{{ single_object.pk }}controls"
-          data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% translate "Controlli" %}">
+          data-bs-toggle="tooltip" data-bs-placement="bottom" title="Controlli">
           <i class="fas fa-cogs"></i>
       </a>
     </div>
@@ -38,7 +37,7 @@
     <div class="slider-container">
       <input type="range" class="form-range"
               min="0" max="100" value="100" id="WMS{{ single_object.pk }}slider">
-      <label class="">{% translate "Trasparenza" %}: <span id="OUTPUT{{ single_object.pk }}"></span> %</label>
+      <label class="">Trasparenza: <span id="OUTPUT{{ single_object.pk }}"></span> %</label>
     </div>
   </div>
 
