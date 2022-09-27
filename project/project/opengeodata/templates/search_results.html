@@ -28,13 +28,11 @@
             </div>
         </div>
 
-        {% if item.ogc_layer_path.complete_url_wms %}
-          {% include './components/card/wms.html' %}
-        {% endif %}
-
-        {% if item.contents %}
-          {% include './components/card/webgis.html' %}
-        {% endif %}
+            {% if item.complete_url_wms %}
+              {% include './components/card/wms.html' %}
+            {% else %}
+                {% include './components/card/webgis.html' %}
+            {% endif %}
 
     </div>
 

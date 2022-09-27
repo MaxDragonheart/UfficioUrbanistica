@@ -67,11 +67,14 @@ class GeoserverWorkspace(TimeManager):
 
 
 class Categories(CategoryBase):
+    def get_absolute_url(self):
+        return reverse("category-single", kwargs={"slug_category": self.slug_category})
 
     class Meta:
         ordering = ['category_name']
         verbose_name = "Categoria"
         verbose_name_plural = "Categorie"
+
 
 class OGCLayer(ModelPost, OpenLayersMapParameters):
     """
@@ -80,7 +83,7 @@ class OGCLayer(ModelPost, OpenLayersMapParameters):
     """
     geoserver_domain = models.ForeignKey(GeoServerDomain, on_delete=models.PROTECT, related_name="related_geoserverdomain")
     geoserver_workspace = models.ForeignKey(GeoserverWorkspace, on_delete=models.PROTECT, related_name="related_geoserverworkspace")
-    #categories = models.ManyToManyField(Section, related_name="related_ogclayer_categories")
+    categories = models.ManyToManyField(Categories, related_name="related_ogclayer_categories")
 
     set_zindex = models.IntegerField(default=1)
     set_opacity = models.DecimalField(max_digits=3, decimal_places=2, default=1.0)
@@ -166,7 +169,7 @@ class WebGISProject(WebGISProjectBase):
     """
     WebGISProject Model inherits WebGISProjectBase, it is useful to create a webgis.
     """
-    #categories = models.ManyToManyField(Section, related_name="related_webgisproject_categories")
+    categories = models.ManyToManyField(Categories, related_name="related_webgisproject_categories")
     main_layer = models.ForeignKey(OGCLayer, on_delete=models.PROTECT, related_name="related_main_wmslayer")
     layers = models.ManyToManyField(OGCLayer, related_name="related_wmslayers", blank=True)
 

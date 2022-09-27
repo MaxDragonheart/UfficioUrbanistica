@@ -3,7 +3,7 @@ from itertools import chain
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
-from .models import OGCLayer, WebGISProject
+from .models import OGCLayer, WebGISProject, Categories
 
 
 def wms_list(request):
@@ -108,3 +108,23 @@ def search(request):
         return render(request, template, context)
     else:
         return render(request, template)
+
+
+def single_category(request, slug_category):
+    """
+    Con questa funzione visualizzo la singola categoria
+    """
+    category = get_object_or_404(Categories, slug_category=slug_category)
+    wms = OGCLayer.objects.filter(categories=category)
+    webgis = WebGISProject.objects.filter(categories=category)
+
+    # paginator = Paginator(blogpost_full, 10)
+    # page = request.GET.get("pagina")
+    # post_list = paginator.get_page(page)
+
+    context = {
+            "category": category,
+            "objects": list(chain(wms, webgis)),
+            }
+
+    return render(request, "opengeodata.html", context)
