@@ -27,7 +27,7 @@ class OGCLayerAdmin(admin.ModelAdmin):
     search_fields = ["title"]
     prepopulated_fields = {"slug_post": ("title",)}
     fieldsets = [
-                ("Header", {"fields": ["title", "slug_post", "description", "categories"]}),
+                ("Meta description", {"fields": ["title", "slug_post", "description", "contents", "categories", "draft"]}),
                 ("Geoserver", {"fields": ["geoserver_domain", "geoserver_workspace"]}),
                 ("OGC Parameters", {"fields": [
                     "ogc_layer_name", "ogc_layer_style", "ogc_legend", "is_vector", "is_raster",

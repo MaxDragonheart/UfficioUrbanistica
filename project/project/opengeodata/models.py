@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.gis.db import models
 from django.urls import reverse
 
-from abstracts.models import TimeManager, BaseModelPost, ModelPost
+from abstracts.models import TimeManager, ModelPost
 from sections.models import Section
 from fsspec import get_fs_token_paths
 
@@ -67,7 +67,7 @@ class GeoserverWorkspace(TimeManager):
         verbose_name_plural = "Geoserver Workspaces"
 
 
-class OGCLayer(BaseModelPost, OpenLayersMapParameters):
+class OGCLayer(ModelPost, OpenLayersMapParameters):
     """
     OGCLayer Model inherits from BaseModelPost and OpenLayersMapParameters. This
     model can build an OGC layer using the attributes from OpenLayers [Layer objectc](https://openlayers.org/en/latest/apidoc/module-ol_layer_Layer-Layer.html).
