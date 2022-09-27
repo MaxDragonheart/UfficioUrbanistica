@@ -1,0 +1,7 @@
+{% load static %}
+{% if DEBUG %}
+    <link rel="icon" href="{% for item in data %}{{ item.logo.url }}{% endfor %}">
+{% else %}
+    <link rel="icon" href="{{ protocol }}://{% for item in data %}{{ item.site.domain }}{{ item.logo.url }}{% endfor %}">
+{% endif %}
+{% include './libraries.html' %}

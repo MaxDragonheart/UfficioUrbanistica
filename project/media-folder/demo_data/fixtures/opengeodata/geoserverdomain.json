@@ -1,0 +1,12 @@
+[
+{
+  "model": "opengeodata.geoserverdomain",
+  "pk": 1,
+  "fields": {
+    "publishing_date": "2022-09-27T15:28:10.429Z",
+    "updating_date": "2022-09-27T15:28:10.471Z",
+    "timestamp": "2022-09-27T15:28:10.471Z",
+    "domain": "https://geoserver.massimilianomoraca.me"
+  }
+}
+]

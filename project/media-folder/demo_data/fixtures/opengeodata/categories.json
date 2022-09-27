@@ -1,0 +1,46 @@
+[
+{
+  "model": "opengeodata.categories",
+  "pk": 1,
+  "fields": {
+    "publishing_date": "2022-09-27T15:27:43.256Z",
+    "updating_date": "2022-09-27T15:27:43.259Z",
+    "timestamp": "2022-09-27T15:27:43.259Z",
+    "category_name": "geo risorsa 1",
+    "slug_category": "geo-risorsa-1"
+  }
+},
+{
+  "model": "opengeodata.categories",
+  "pk": 2,
+  "fields": {
+    "publishing_date": "2022-09-27T15:27:47.945Z",
+    "updating_date": "2022-09-27T15:27:47.947Z",
+    "timestamp": "2022-09-27T15:27:47.947Z",
+    "category_name": "geo risorsa 2",
+    "slug_category": "geo-risorsa-2"
+  }
+},
+{
+  "model": "opengeodata.categories",
+  "pk": 3,
+  "fields": {
+    "publishing_date": "2022-09-27T15:27:51.785Z",
+    "updating_date": "2022-09-27T15:27:51.788Z",
+    "timestamp": "2022-09-27T15:27:51.788Z",
+    "category_name": "geo risorsa 3",
+    "slug_category": "geo-risorsa-3"
+  }
+},
+{
+  "model": "opengeodata.categories",
+  "pk": 4,
+  "fields": {
+    "publishing_date": "2022-09-27T15:27:54.711Z",
+    "updating_date": "2022-09-27T15:27:54.714Z",
+    "timestamp": "2022-09-27T15:27:54.714Z",
+    "category_name": "geo risorsa 4",
+    "slug_category": "geo-risorsa-4"
+  }
+}
+]
