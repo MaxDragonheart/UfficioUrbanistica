@@ -5,8 +5,7 @@ from django.conf import settings
 from django.contrib.gis.db import models
 from django.urls import reverse
 
-from abstracts.models import TimeManager, ModelPost
-from sections.models import Section
+from abstracts.models import TimeManager, ModelPost, CategoryBase
 from fsspec import get_fs_token_paths
 
 from .utils import get_wms_bbox, get_centroid_coords, get_wms_thumbnail, WMS_THUMBNAILS
@@ -67,6 +66,13 @@ class GeoserverWorkspace(TimeManager):
         verbose_name_plural = "Geoserver Workspaces"
 
 
+class Categories(CategoryBase):
+
+    class Meta:
+        ordering = ['category_name']
+        verbose_name = "Categoria"
+        verbose_name_plural = "Categorie"
+
 class OGCLayer(ModelPost, OpenLayersMapParameters):
     """
     OGCLayer Model inherits from BaseModelPost and OpenLayersMapParameters. This
@@ -74,7 +80,7 @@ class OGCLayer(ModelPost, OpenLayersMapParameters):
     """
     geoserver_domain = models.ForeignKey(GeoServerDomain, on_delete=models.PROTECT, related_name="related_geoserverdomain")
     geoserver_workspace = models.ForeignKey(GeoserverWorkspace, on_delete=models.PROTECT, related_name="related_geoserverworkspace")
-    categories = models.ManyToManyField(Section, related_name="related_ogclayer_categories")
+    #categories = models.ManyToManyField(Section, related_name="related_ogclayer_categories")
 
     set_zindex = models.IntegerField(default=1)
     set_opacity = models.DecimalField(max_digits=3, decimal_places=2, default=1.0)
@@ -160,7 +166,7 @@ class WebGISProject(WebGISProjectBase):
     """
     WebGISProject Model inherits WebGISProjectBase, it is useful to create a webgis.
     """
-    categories = models.ManyToManyField(Section, related_name="related_webgisproject_categories")
+    #categories = models.ManyToManyField(Section, related_name="related_webgisproject_categories")
     main_layer = models.ForeignKey(OGCLayer, on_delete=models.PROTECT, related_name="related_main_wmslayer")
     layers = models.ManyToManyField(OGCLayer, related_name="related_wmslayers", blank=True)
 
