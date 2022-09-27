@@ -1,24 +1,70 @@
 {% load static %}
 <div class="col-sm-8 ogc-card-description">
+    <p>{{ item.contents|safe }}</p>
     <div class="">
-      <p><strong>WMS service</strong></p>
-        <input class="copytoclipboard" type="text"
-        value="{{ item.ogc_layer_path.complete_url_wms }}" id="ogc{{ item.id }}">
-          <button onclick="copyToClipboard('ogc{{ item.id }}')">
-            <i class="far fa-copy"></i>
-          </button>
+        <p><strong>WMS service</strong></p>
+        <p>
+            <span class="copytoclipboard" id="wms{{ item.id }}">{{ item.complete_url_wms }}</span>
+            <button class="btn btn-primary" onclick="copyToClipboard('wms{{ item.id }}')" title="Clicca per copiare">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                </svg>
+            </button>
+        </p>
+    </div>
+    {% if item.is_vector %}
+    <div class="">
+        <p><strong>WFS service</strong></p>
+        <p>
+            <span class="copytoclipboard" id="wfs{{ item.id }}">{{ item.complete_url_wfs_wcs }}</span>
+            <button class="btn btn-primary" onclick="copyToClipboard('wfs{{ item.id }}')" title="Clicca per copiare">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                </svg>
+            </button>
+        </p>
+    </div>
+    {% elif item.is_raster %}
+    <div class="">
+        <p><strong>WCS service</strong></p>
+        <p>
+            <span class="copytoclipboard" id="wcs{{ item.id }}">{{ item.complete_url_wfs_wcs }}</span>
+            <button class="btn btn-primary" onclick="copyToClipboard('wcs{{ item.id }}')" title="Clicca per copiare">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                </svg>
+            </button>
+        </p>
+    </div>
+    {% else %}
+    <div class="alert alert-danger" role="alert">
+      Il dato non è stato associato nè ad un vettore, nè ad un raster.
+    </div>
+    {% endif %}
+    <div class="">
+        <p><strong>Layer name</strong></p>
+        <p>
+            <span class="copytoclipboard" id="ogcname{{ item.id }}">{{ item.ogc_layer_name }}</span>
+            <button class="btn btn-primary" onclick="copyToClipboard('ogcname{{ item.id }}')" title="Clicca per copiare">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+            </svg>
+            </button>
+        </p>
     </div>
     <div class="">
-      <p><strong>Layer name</strong></p>
-        <input class="copytoclipboard" type="text"
-        value="{{ item.ogc_layer_name }}" id="ogcname{{ item.id }}">
-          <button onclick="copyToClipboard('ogcname{{ item.id }}')">
-            <i class="far fa-copy"></i>
-          </button>
-    </div>
-    <div class="">
-        <p><strong>BBOX:</strong> {{ item.ogc_bbox }}</p>
-        <p><strong>Centroide:</strong> {{ item.ogc_centroid }}</p>
+        <p><strong>BBOX</strong> </p>
+        <p>{{ item.ogc_bbox }}</p>
+        <p><strong>Centroide</strong> </p>
+        <p>{{ item.ogc_centroid }}</p>
     </div>
 </div>
 
