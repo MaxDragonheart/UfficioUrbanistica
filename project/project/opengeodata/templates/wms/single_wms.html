@@ -75,7 +75,7 @@
   var ogc{{ single_object.pk }} = new ol.layer.Tile({
     title: '{{ single_object.title }}',
     source: new ol.source.TileWMS({
-      url: '{{ single_object.ogc_layer_path.complete_url_wms }}',
+      url: '{{ single_object.complete_url_wms }}',
       params: {
         'LAYERS': '{{ single_object.ogc_layer_name }}',
         // 'STYLES': null,
@@ -99,7 +99,7 @@
   layerOpacity(ogc{{ single_object.pk }}, 'WMS{{ single_object.pk }}slider', 'OUTPUT{{ single_object.pk }}');
 
   getElementInfo('onclickinfo{{ single_object.pk }}', ogc{{ single_object.pk }}, '{{ single_object.title }}');
-  getElementLegendImg('legend{{ single_object.pk }}', ogc{{ single_object.pk }}, '{{ single_object.ogc_layer_path.complete_url_wms }}', '{{ single_object.ogc_layer_name }}');
+  getElementLegendImg('legend{{ single_object.pk }}', ogc{{ single_object.pk }}, '{{ single_object.complete_url_wms }}', '{{ single_object.ogc_layer_name }}');
   // getElementLegend('legend{{ single_object.pk }}', ogc);
 
 </script>
