@@ -1,10 +1,9 @@
-{% load i18n %}
 {% load static %}
 {% block wms %}
 
-{% include './main_layer.html' %}
+    {% include './main_layer.html' %}
 
-<script type="text/javascript">
+<!--<script type="text/javascript">
 
 {% if single_object.layers %}
   {% for wms in single_object.layers.all %}
@@ -12,7 +11,7 @@
     var wms{{ wms.pk }} = new ol.layer.Tile({
       title: '{{ wms.title }}',
       source: new ol.source.TileWMS({
-        url: '{{ wms.ogc_layer_path.complete_url_wms }}',
+        url: '{{ wms.complete_url_wms }}',
         params: {
           'LAYERS': '{{ wms.ogc_layer_name }}',
           'STYLES': {% if wms.ogc_layer_style %}'{{ wms.ogc_layer_style }}'{% else %}null{% endif %},
@@ -21,7 +20,7 @@
       minZoom: {{ wms.set_min_zoom }},
       maxZoom: {{ wms.set_max_zoom }},
       zIndex: {% if wms.set_index %}{{ wms.set_index }}{% else %}1{% endif %},
-      opacity: {{ wms.set_opacity }}
+      opacity: {{ wms.set_opacity }},
     });
 
     layerOpacity(wms{{ wms.pk }}, 'WMS{{ wms.pk }}slider', 'OUTPUT{{ wms.pk }}');
@@ -32,7 +31,7 @@
       if (isChecked) {
         map.addLayer(wms{{ wms.pk }});
         getElementInfo('onclickinfo{{ wms.pk }}', wms{{ wms.pk }}, '{{ wms.title }}');
-        getElementLegendImg('legend{{ wms.pk }}', wms{{ wms.pk }}, '{{ wms.ogc_layer_path.complete_url_wms }}', '{{ wms.ogc_layer_name }}');
+        getElementLegendImg('legend{{ wms.pk }}', wms{{ wms.pk }}, '{{ wms.complete_url_wms }}', '{{ wms.ogc_layer_name }}');
       } else {
         map.removeLayer(wms{{ wms.pk }});
         removeElementInfo('onclickinfo{{ wms.pk }}');
@@ -41,5 +40,10 @@
   {% endif %}
   {% endfor %}
 {% endif %}
-</script>
+</script>-->
+
 {% endblock wms %}
+
+
+
+

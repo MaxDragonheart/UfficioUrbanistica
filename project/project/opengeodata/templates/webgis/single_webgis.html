@@ -4,10 +4,6 @@
 
 {% block controls %}
 
-  {#% block basemap-controls %#}
-      {% include '../components/basemap/controls.html' %}
-  {#% endblock basemap-controls %#}
-
   {% block wms-controls %}
       {% include '../components/wms/controls.html' %}
   {% endblock wms-controls %}
@@ -23,9 +19,6 @@
   });
   map.addLayer(osm);
 </script>
-  {#% block basemap %#}
-    {% include '../components/basemap/layers.html' %}
-  {#% endblock basemap %#}
 
   {% block wms %}
     {% include '../components/wms/layers.html' %}
