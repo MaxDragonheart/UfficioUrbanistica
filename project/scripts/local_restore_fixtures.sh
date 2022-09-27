@@ -29,4 +29,12 @@ echo "- restore fixtures for Sections app"
 python3 ../project/manage.py loaddata ../project/fixtures/sections/section.json
 python3 ../project/manage.py loaddata ../project/fixtures/sections/sectionpost.json
 
+# Open GeoData
+echo "- restore fixtures for Open GeoData app"
+python3 ../project/manage.py loaddata ../project/fixtures/opengeodata/categories.json
+python3 ../project/manage.py loaddata ../project/fixtures/opengeodata/geoserverdomain.json
+python3 ../project/manage.py loaddata ../project/fixtures/opengeodata/geoserverworkspace.json
+python3 ../project/manage.py loaddata ../project/fixtures/opengeodata/ogclayer.json
+python3 ../project/manage.py loaddata ../project/fixtures/opengeodata/webgisproject.json
+
 echo "End process"

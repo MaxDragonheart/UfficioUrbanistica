@@ -29,4 +29,12 @@ echo "- make fixtures for Sections"
 poetry run python3 ../project/manage.py dumpdata sections.section --indent 2 > ../project/fixtures/sections/section.json
 poetry run python3 ../project/manage.py dumpdata sections.sectionpost --indent 2 > ../project/fixtures/sections/sectionpost.json
 
+# Open GeoData
+echo "- make fixtures for Open GeoData"
+poetry run python3 ../project/manage.py dumpdata opengeodata.categories --indent 2 > ../project/fixtures/opengeodata/categories.json
+poetry run python3 ../project/manage.py dumpdata opengeodata.geoserverdomain --indent 2 > ../project/fixtures/opengeodata/geoserverdomain.json
+poetry run python3 ../project/manage.py dumpdata opengeodata.geoserverworkspace --indent 2 > ../project/fixtures/opengeodata/geoserverworkspace.json
+poetry run python3 ../project/manage.py dumpdata opengeodata.ogclayer --indent 2 > ../project/fixtures/opengeodata/ogclayer.json
+poetry run python3 ../project/manage.py dumpdata opengeodata.webgisproject --indent 2 > ../project/fixtures/opengeodata/webgisproject.json
+
 echo "End process"
