@@ -10,12 +10,7 @@
 
 # Extra CSS o Javascript
 {% block extra_head %}
-    {% if DEBUG %}
-        <link rel="icon" href="{% for item in data %}{{ item.logo.url }}{% endfor %}">
-    {% else %}
-        <link rel="icon" href="{{ protocol }}://{% for item in data %}{{ item.site.domain }}{{ item.logo.url }}{% endfor %}">
-    {% endif %}
-    {% include './commons/libraries.html' %}
+    {% include './commons/extra_head_base.html' %}
 {% endblock extra_head %}
 #### END HEAD
 
@@ -42,7 +37,7 @@
 # Area icone social in sezione principale Header
 {% block header_center_social %}
 <span>
-    <a class="link-lite-blue-background" href="#" title="Vai alla pagina: Map Viewer">
+    <a class="link-lite-blue-background" href="{% url 'open-geodata' %}" title="Vai alla pagina: Map Viewer">
         <strong>Map Viewer</strong>
     </a>
 </span>

@@ -102,7 +102,7 @@ class OGCLayer(BaseModelPost, OpenLayersMapParameters):
         return url
 
     def get_absolute_url(self):
-        return reverse("ogc-single", kwargs={"slug": self.slug})
+        return reverse("layer-single", kwargs={"slug_post": self.slug_post})
 
     def save(self, *args, **kwargs):
         """Override save method and add to DB thumbnail path, BBOX and centroid.
@@ -165,7 +165,7 @@ class WebGISProject(WebGISProjectBase):
     layers = models.ManyToManyField(OGCLayer, related_name="related_wmslayers", blank=True)
 
     def get_absolute_url(self):
-        return reverse("map-single", kwargs={"slug": self.slug})
+        return reverse("webgis-single", kwargs={"slug_post": self.slug_post})
 
     class Meta:
         ordering = ['-publishing_date']
