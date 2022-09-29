@@ -1,8 +1,18 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
+from django.contrib.sitemaps.views import sitemap
+
+from .sitemaps import StaticSitemap, FlatpageSitemap
+
+sitemap_elements = {
+    'staticpages': StaticSitemap,
+    'flatpages': FlatpageSitemap,
+}
 
 urlpatterns = [
+    path('sitemap.xml', sitemap, {'sitemaps': sitemap_elements}, name='sitemap'),
+
     path('', include('sections.urls')),
     path('utenti/', include('usermanager.urls')),
     path('open-geodata/', include('opengeodata.urls')),
