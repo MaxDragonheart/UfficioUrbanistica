@@ -96,7 +96,7 @@ def opengeodata(request):
 
 
 def search(request):
-    template = "search_results.html"
+    template = "opengeodata.html"
 
     if "q" in request.GET:
         querystring = request.GET.get("q")
@@ -111,9 +111,14 @@ def search(request):
                                 Q(contents__icontains=querystring)
                             )
 
+        objects = list(chain(wms, webgis))
+
+        # paginator = Paginator(item_list, 2)
+        # page = request.GET.get("pagina")
+        # objects = paginator.get_page(page)
+
         context = {
-            "name": "Risultati della ricerca | Open GeoData",
-            "objects": list(chain(wms, webgis)),
+            "objects": objects,
         }
         return render(request, template, context)
     else:
