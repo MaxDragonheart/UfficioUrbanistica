@@ -80,7 +80,7 @@ def search(request):
     """
     Con questa funzione consento la ricerca tra le pubblicazioni.
     """
-    template = "search_article.html"
+    template = "all_posts.html"
 
     if "q" in request.GET:
         querystring = request.GET.get("q")
@@ -91,7 +91,7 @@ def search(request):
                                 Q(category__category_name__icontains=querystring)
                             )
 
-        context = {"post_list": post_list}
+        context = {"objects": post_list}
         return render(request, template, context)
     else:
         return render(request, template)
