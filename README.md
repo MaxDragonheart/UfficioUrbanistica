@@ -8,4 +8,5 @@
 
 ## Geo-CMS per la condivisione di notizie da parte degli uffici tecnici della PA
 
-Integra *[Bootstrap Italia template for Django](https://github.com/UniversitaDellaCalabria/design-django-theme)* per rispettare le nuove linee guida di design per i servizi web della PA
+*Ufficio Urbanistica* usa *[Bootstrap Italia template for Django](https://github.com/UniversitaDellaCalabria/design-django-theme)* per rispettare le nuove linee guida di design per i servizi web della PA.
+Integra e sostituisce [OpenGeoData](https://github.com/MaxDragonheart/OpenGeoData).
