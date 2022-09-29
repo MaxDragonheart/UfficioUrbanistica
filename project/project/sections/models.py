@@ -29,6 +29,7 @@ class SectionPost(ModelPost):
     user = models.ForeignKey(UserProfile, on_delete=models.SET_DEFAULT, related_name="related_creator", default=1)
     category = models.ForeignKey(Section, on_delete=models.PROTECT, related_name="related_category")
     attachment = models.ManyToManyField(FileUpload, related_name="related_attachment", blank=True)
+
     def get_absolute_url(self):
         return reverse("single_article", kwargs={
                                                 "slug_post": self.slug_post,

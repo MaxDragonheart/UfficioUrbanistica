@@ -4,10 +4,17 @@ from django.urls import path, include
 from django.contrib.sitemaps.views import sitemap
 
 from .sitemaps import StaticSitemap, FlatpageSitemap
+from sections.sitemaps import SectionSitemap, SectionPostSitemap
+from opengeodata.sitemaps import CategoriesSitemap, OGCLayerSitemap, WebGISProjectSitemap
 
 sitemap_elements = {
     'staticpages': StaticSitemap,
     'flatpages': FlatpageSitemap,
+    'section': SectionSitemap,
+    'section-post': SectionPostSitemap,
+    'opengeodata-categories': CategoriesSitemap,
+    'ogc-layers': OGCLayerSitemap,
+    'webgis': WebGISProjectSitemap,
 }
 
 urlpatterns = [
