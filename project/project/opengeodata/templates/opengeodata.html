@@ -12,7 +12,11 @@
 {% block container %}
 
     <div class="row px-2">
-        <div class="col-8 text-left"><h1>Elenco delle risorse</h1></div>
+        <div class="col-8 text-left">
+            <h1>
+            {% block opengeodata-head %}Elenco delle risorse{% endblock opengeodata-head %}
+            </h1>
+        </div>
         <div class="col-4 text-right">
             <div>
                 <form class="" action="{% url 'open-geodata-search' %}">

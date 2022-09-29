@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.opengeodata, name='open-geodata'),
-    path('', views.search, name='open-geodata-search'),
+    path('risultati/', views.search, name='open-geodata-search'),
     path('category/<slug:slug_category>/', views.single_category, name='category-single'),
     path('wms/', include([
         # path('feed/', FeedOGCLayer(), name='wms-feed'),

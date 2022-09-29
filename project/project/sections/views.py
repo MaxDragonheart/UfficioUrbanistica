@@ -8,16 +8,6 @@ from .models import Section, SectionPost
 post_filter = SectionPost.objects.filter(draft=False, publishing_date__lte=Now())
 
 
-def tmp_homepage(request):
-    """
-    Home page temporanea
-    :param request:
-    :return:
-    """
-    template = "index_tmp.html"
-    return render(request, template)
-
-
 def homepage(request):
     """
     Con questa funzione definisco la lista delle categorie
