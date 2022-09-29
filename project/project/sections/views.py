@@ -62,7 +62,7 @@ def all_posts(request):
     post_list = paginator.get_page(page)
 
     context = {
-        "post_list": post_list,
+        "objects": post_list,
     }
     template = "all_posts.html"
     return render(request, template, context)

@@ -46,7 +46,7 @@ class BaseModelPost(TimeManager):
     """
     title = models.CharField(max_length=70, unique=True)
     slug_post = models.SlugField(max_length=70, unique=True)
-    header_image = models.ImageField(upload_to='uploads/images/%Y/%m/%d', default='header_default.jpg')
+    header_image = models.ImageField(upload_to='uploads/images/%Y/%m/%d', blank=True, null=True)
     description = models.TextField(max_length=150, blank=True, null=True)
 
     def __str__(self):
