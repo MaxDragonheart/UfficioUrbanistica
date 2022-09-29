@@ -11,6 +11,19 @@
 
 {% block container %}
 
+    <div class="row px-2">
+        <div class="col-8 text-left">
+            <h1>
+            {% block opengeodata-head %}Elenco delle risorse{% endblock opengeodata-head %}
+            </h1>
+        </div>
+        <div class="col-4 text-right">
+            <form class="" action="{% url 'open-geodata-search' %}">
+                {% include './components/search.html' %}
+            </form>
+        </div>
+    </div>
+
     {% for item in objects %}
     <div class="ogc-card">
 
@@ -37,5 +50,9 @@
 
     </div>
     {% endfor %}
+
+    <div class="container mt-3">
+        {% include './components/paginantion.html' %}
+    </div>
 
 {% endblock container %}

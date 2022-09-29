@@ -8,16 +8,6 @@ from .models import Section, SectionPost
 post_filter = SectionPost.objects.filter(draft=False, publishing_date__lte=Now())
 
 
-def tmp_homepage(request):
-    """
-    Home page temporanea
-    :param request:
-    :return:
-    """
-    template = "index_tmp.html"
-    return render(request, template)
-
-
 def homepage(request):
     """
     Con questa funzione definisco la lista delle categorie
@@ -62,7 +52,7 @@ def all_posts(request):
     post_list = paginator.get_page(page)
 
     context = {
-        "post_list": post_list,
+        "objects": post_list,
     }
     template = "all_posts.html"
     return render(request, template, context)
@@ -90,7 +80,7 @@ def search(request):
     """
     Con questa funzione consento la ricerca tra le pubblicazioni.
     """
-    template = "search_article.html"
+    template = "all_posts.html"
 
     if "q" in request.GET:
         querystring = request.GET.get("q")
@@ -101,7 +91,7 @@ def search(request):
                                 Q(category__category_name__icontains=querystring)
                             )
 
-        context = {"post_list": post_list}
+        context = {"objects": post_list}
         return render(request, template, context)
     else:
         return render(request, template)

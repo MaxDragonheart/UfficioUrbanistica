@@ -6,7 +6,11 @@
         <th class="text-center" colspan="4">
           <h3 class="my-0 py-1"><strong>Elenco delle pubblicazioni</strong></h3>
         </th>
-        <th class="text-center" colspan="2">{% include './search.html' %}</th>
+        <th class="text-center" colspan="2">
+            <form class="" action="{% url 'search_results' %}">
+                {% include './search.html' %}
+            </form>
+        </th>
       </tr>
       <tr>
         <th class="text-center" colspan="1">Titolo</th>
@@ -17,7 +21,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for post in post_list %}
+      {% for post in objects %}
         <tr>
           {% if post.is_future %}
           <td class="text-center" colspan="1">

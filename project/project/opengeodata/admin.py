@@ -52,7 +52,7 @@ class OGCLayerAdmin(admin.ModelAdmin):
 
 
 class WebGISProjectAdmin(admin.ModelAdmin):
-    list_display = ["title", "description", "publishing_date", "updating_date", "highlighted", "draft"]
+    list_display = ["title", "description", "publishing_date", "updating_date", "highlighted", "draft", "meta_image"]
     list_filter = ["publishing_date"]
     search_fields = ["title"]
     prepopulated_fields = {"slug_post": ("title",)}

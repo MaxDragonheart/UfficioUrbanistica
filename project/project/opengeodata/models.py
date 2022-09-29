@@ -3,9 +3,11 @@ from pathlib import Path
 
 from django.conf import settings
 from django.contrib.gis.db import models
+from django.template.context_processors import request
 from django.urls import reverse
 
 from abstracts.models import TimeManager, ModelPost, CategoryBase
+from core.models import SiteCustomization
 from fsspec import get_fs_token_paths
 
 from .utils import get_wms_bbox, get_centroid_coords, get_wms_thumbnail, WMS_THUMBNAILS
@@ -175,6 +177,14 @@ class WebGISProject(WebGISProjectBase):
 
     def get_absolute_url(self):
         return reverse("webgis-single", kwargs={"slug_post": self.slug_post})
+
+    @property
+    def meta_image(self):
+        if self.header_image:
+            meta_image = self.header_image
+        else:
+            meta_image = SiteCustomization.objects.get(id=1).header_image
+        return meta_image
 
     class Meta:
         ordering = ['-publishing_date']
