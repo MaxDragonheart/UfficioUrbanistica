@@ -21,9 +21,9 @@
 # Header logo principale
 {% block header_center_logo %}
     {% if DEBUG %}
-        <img src="{% for item in data %}{{ item.logo.url }}{% endfor %}">
+        <img class="site-logo" src="{% for item in data %}{{ item.logo.url }}{% endfor %}">
     {% else %}
-        <img src="{{ protocol }}://{% for item in data %}{{ item.site.domain }}{{ item.logo.url }}{% endfor %}">
+        <img class="site-logo" src="{{ protocol }}://{% for item in data %}{{ item.site.domain }}{{ item.logo.url }}{% endfor %}">
     {% endif %}
 {% endblock header_center_logo %}
 {% block header_center_url %}{% url 'homepage' %}{% endblock header_center_url %}
@@ -58,9 +58,9 @@
 # Logo Footer
 {% block footer_logo %}
     {% if DEBUG %}
-        <img src="{% for item in data %}{{ item.logo.url }}{% endfor %}">
+        <img class="site-logo" src="{% for item in data %}{{ item.logo.url }}{% endfor %}">
     {% else %}
-        <img src="{{ protocol }}://{% for item in data %}{{ item.site.domain }}{{ item.logo.url }}{% endfor %}">
+        <img class="site-logo" src="{{ protocol }}://{% for item in data %}{{ item.site.domain }}{{ item.logo.url }}{% endfor %}">
     {% endif %}
 {% endblock footer_logo %}
 {% block footer_logo_url %}{% url 'homepage' %}{% endblock footer_logo_url %}
