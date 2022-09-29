@@ -91,6 +91,7 @@
         <h5>Servizi</h5>
         <div class="link-list-wrapper">
             <ul class="footer-list link-list clearfix">
+                <li><a class="list-item" href="{% url 'sitemap' %}" title="Vai alla pagina: {{ link.title }}" target="_blank">Mappa del sito</a></li>
                 {% for link in links_column2 %}
                 <li><a class="list-item" href="{{ link.url }}" title="Vai alla pagina: {{ link.title }}" target="_blank">{{ link.title }}</a></li>
                 {% endfor %}
