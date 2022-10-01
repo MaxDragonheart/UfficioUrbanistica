@@ -3,7 +3,6 @@ ARG PROJECT_NAME=UfficioUrbanistica_test
 ARG DEBUG=1
 ARG ALLOWED_HOSTS=*
 ARG SECRET_KEY=test_secret_key
-ARG DB_ENGINE=django.contrib.gis.db.backends.postgis
 ARG DB_NAME=test_db_docker
 ARG DB_USER=postgres
 ARG DB_PASSWORD=30092022
@@ -54,7 +53,6 @@ ENV SECRET_KEY=${SECRET_KEY} \
     DEBUG=${DEBUG} \
     ALLOWED_HOSTS=${ALLOWED_HOSTS} \
     PROJECT_PORT=${PROJECT_PORT} \
-    DB_ENGINE=${DB_ENGINE} \
     DB_NAME=${DB_NAME} \
     DB_USER=${DB_USER} \
     DB_PASSWORD=${DB_PASSWORD} \
@@ -66,8 +64,9 @@ RUN mkdir -p project static-folder media-folder
 COPY project project
 COPY media-folder/demo_data media-folder/demo_data
 RUN rm -rf project/fixtures
+RUN rm -rf project/project/.env
 COPY scripts/migrate-collectstic.sh ./migrate-collectstic.sh
-#COPY scripts/backup-fixtures.sh ./backup-fixtures.sh
+COPY scripts/backup-fixtures.sh ./backup-fixtures.sh
 COPY scripts/restore-fixtures.sh ./restore-fixtures.sh
 COPY scripts/make-fixtures-folders.sh ./make_fixtures-folders.sh
 COPY scripts/start_project-production.sh ./start_project-production.sh
