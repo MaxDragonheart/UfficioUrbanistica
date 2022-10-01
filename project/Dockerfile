@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 ARG PROJECT_NAME=UfficioUrbanistica_test
 ARG DEBUG=1
-ARG ALLOWED_HOSTS=*
+ARG ALLOWED_HOSTS='*'
 ARG SECRET_KEY=test_secret_key
 ARG DB_NAME=test_db_docker
 ARG DB_USER=postgres
@@ -64,7 +64,7 @@ RUN mkdir -p project static-folder media-folder
 COPY project project
 COPY media-folder/demo_data media-folder/demo_data
 RUN rm -rf project/fixtures
-RUN rm -rf project/project/.env
+#RUN rm -rf project/project/.env
 COPY scripts/migrate-collectstic.sh ./migrate-collectstic.sh
 COPY scripts/backup-fixtures.sh ./backup-fixtures.sh
 COPY scripts/restore-fixtures.sh ./restore-fixtures.sh
