@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Useful only in development on local machine.
 echo "- Start restore"
-echo "NOTE: use this process only in development!!"
 
 # Usermanager
 echo "1. Restore fixtures for Usermanager"

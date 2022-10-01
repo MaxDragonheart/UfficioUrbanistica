@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 ARG PROJECT_NAME=UfficioUrbanistica_test
-ARG DEBUG=on
+ARG DEBUG=1
 ARG ALLOWED_HOSTS=*
 ARG SECRET_KEY=test_secret_key
 ARG DB_ENGINE=django.contrib.gis.db.backends.postgis
@@ -10,6 +10,8 @@ ARG DB_PASSWORD=30092022
 ARG DB_PORT=5432
 ARG DB_HOST=localhost
 ARG PROJECT_PORT=8301
+ARG ALLOWED_HOSTS=${ALLOWED_HOSTS}
+ARG PROJECT_PORT=${PROJECT_PORT}
 
 # Ubuntu Lib GIS Image as Layer
 FROM maxdragonheart/ulgis:latest as gis-os
@@ -48,8 +50,36 @@ RUN poetry install --only main --no-root --no-ansi
 
 # Project Dependencies as Layer
 FROM project-dependencies as project
+ENV SECRET_KEY=${SECRET_KEY} \
+    DEBUG=${DEBUG} \
+    ALLOWED_HOSTS=${ALLOWED_HOSTS} \
+    PROJECT_PORT=${PROJECT_PORT} \
+    DB_ENGINE=${DB_ENGINE} \
+    DB_NAME=${DB_NAME} \
+    DB_USER=${DB_USER} \
+    DB_PASSWORD=${DB_PASSWORD} \
+    DB_PORT=${DB_PORT} \
+    DB_HOST=${DB_HOST}
+
 # Create project directories
 RUN mkdir -p project static-folder media-folder
 COPY project project
 COPY media-folder/demo_data media-folder/demo_data
 RUN rm -rf project/fixtures
+COPY scripts/migrate-collectstic.sh ./migrate-collectstic.sh
+#COPY scripts/backup-fixtures.sh ./backup-fixtures.sh
+COPY scripts/restore-fixtures.sh ./restore-fixtures.sh
+COPY scripts/make_fixtures_folders.sh ./make_fixtures_folders.sh
+COPY scripts/start_project_production.sh ./start_project_production.sh
+RUN chmod +x **.sh
+
+# Project as Layer
+FROM project as gunicorn-setting-up
+# Install Gunicorn
+RUN poetry add gunicorn
+# Create directory for logging files
+RUN mkdir logs
+# Copy adn active entrypoint
+COPY scripts/entrypoint.sh ./entrypoint.sh
+RUN chmod +x entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]
