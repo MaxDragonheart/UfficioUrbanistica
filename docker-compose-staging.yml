@@ -1,7 +1,6 @@
 version: '3.7'
 
 services:
-
   db:
     image: postgis/postgis
     restart: always
@@ -12,13 +11,13 @@ services:
     container_name: db_postgis_staging
     volumes:
       - db-data:/var/lib/postgresql/data
-    networks:
-      - ufficiourbanistica
+#    networks:
+#      - ufficiourbanistica
 
   website:
     image: maxdragonheart/${PROJECT_NAME}
     build:
-      context: ./website
+      context: ./project
       dockerfile: Dockerfile
     environment:
       PROJECT_NAME: ${PROJECT_NAME}
@@ -30,7 +29,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_PORT: ${DB_PORT}
       DB_HOST: ${DB_HOST}
-      DEBUG: 1
+      DEBUG: ${DEBUG}
       ALLOWED_HOSTS: ${ALLOWED_HOSTS}
     container_name: ufficiourbanistica_staging
     restart: always
@@ -43,15 +42,16 @@ services:
       - project-fixtures:/app/web/project/fixtures
     depends_on:
       - db
-    networks:
-      - ufficiourbanistica
+#    networks:
+#      - ufficiourbanistica
 
 volumes:
+  db-data:
   project-static-folder:
   project-media-folder:
   project-logs:
   project-fixtures:
 
-networks:
-  ufficiourbanistica:
-    driver: bridge
+#networks:
+#  ufficiourbanistica:
+#    driver: bridge

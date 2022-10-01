@@ -6,11 +6,11 @@ touch ./logs/gunicorn.log
 touch ./logs/gunicorn-access.log
 
 echo "Move to project directory"
-cd personal_website
+cd project
 
 echo "Project in progress.."
-exec gunicorn personal_website.wsgi:application \
-    --name personal_website \
+poetry run gunicorn project.wsgi:application \
+    --name project \
     --bind 0.0.0.0:"${PROJECT_PORT}" \
     --workers 3 \
     --log-level=debug \

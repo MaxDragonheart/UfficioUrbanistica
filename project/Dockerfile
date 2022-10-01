@@ -69,8 +69,8 @@ RUN rm -rf project/fixtures
 COPY scripts/migrate-collectstic.sh ./migrate-collectstic.sh
 #COPY scripts/backup-fixtures.sh ./backup-fixtures.sh
 COPY scripts/restore-fixtures.sh ./restore-fixtures.sh
-COPY scripts/make_fixtures_folders.sh ./make_fixtures_folders.sh
-COPY scripts/start_project_production.sh ./start_project_production.sh
+COPY scripts/make-fixtures-folders.sh ./make_fixtures-folders.sh
+COPY scripts/start_project-production.sh ./start_project-production.sh
 RUN chmod +x **.sh
 
 # Project as Layer
