@@ -16,10 +16,12 @@ ARG PROJECT_PORT=${PROJECT_PORT}
 FROM maxdragonheart/ulgis:latest as gis-os
 # Disable Prompt During Packages Installation
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get install python3.8-venv
+RUN apt update && apt upgrade -y
 
 # GIS-OS as Layer
 FROM gis-os as project-dependencies
+# Install Python env
+RUN apt install python3.8-venv -y
 # Set work directory
 WORKDIR /app/web
 # Environment variables
@@ -81,4 +83,5 @@ RUN mkdir logs
 # Copy adn active entrypoint
 COPY scripts/entrypoint.sh ./entrypoint.sh
 RUN chmod +x entrypoint.sh
+
 ENTRYPOINT ["./entrypoint.sh"]

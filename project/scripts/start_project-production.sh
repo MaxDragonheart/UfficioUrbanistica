@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-echo "START UfficioUrbanistica in STAGING"
+echo "START UfficioUrbanistica"
 
 echo "--- Make migrations and collect static files"
-bash ./migrate-collecstatic.sh
+bash ./migrate-collectstic.sh
 
 echo "--- Copy startup fixtures into project folder"
 cp -r media-folder/demo_data/fixtures project/

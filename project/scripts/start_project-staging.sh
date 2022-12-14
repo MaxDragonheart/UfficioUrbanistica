@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-echo "START UfficioUrbanistica"
+echo "START UfficioUrbanistica in STAGING"
 
 echo "--- Make migrations and collect static files"
-bash ./migrate-collecstatic.sh
+bash ./migrate-collectstic.sh
 
 echo "--- Make folders for startup fixtures"
 bash ./make-fixtures-folders.sh
