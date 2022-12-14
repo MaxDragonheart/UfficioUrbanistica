@@ -112,7 +112,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': env('DB_ENGINE'),
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
@@ -206,14 +206,3 @@ LOGOUT_REDIRECT_URL = "/"
 
 # Project settings
 SITE_ID = 1
-ADMIN_USERNAME = env('ADMIN_USERNAME')
-ADMIN_PASSWORD = env('ADMIN_PASSWORD')
-DOMAIN_NAME = env('DOMAIN_NAME')
-DOMAIN = env('DOMAIN')
-SITE_TITLE = env('SITE_TITLE')
-SITE_LOGO = env('SITE_LOGO')
-SITE_DESCRIPTION = env('SITE_DESCRIPTION')
-ADDRESS = env('ADDRESS')
-CONTACT_PHONE = env('CONTACT_PHONE')
-CONTACT_EMAIL = env('CONTACT_EMAIL')
-CONTACT_OFFICIAL_EMAIL = env('CONTACT_OFFICIAL_EMAIL')
