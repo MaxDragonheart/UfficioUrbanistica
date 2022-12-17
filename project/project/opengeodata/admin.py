@@ -4,8 +4,11 @@ from .models import GeoServerDomain, GeoserverWorkspace, OGCLayer, WebGISProject
 
 
 class GeoServerDomainAdmin(admin.ModelAdmin):
+    list_display = ["domain", "container_domain"]
+    list_filter = ["publishing_date"]
+    search_fields = ["domain"]
     fieldsets = [
-        (None, {"fields": ["domain"]}),
+        (None, {"fields": ["domain", "container_domain"]}),
     ]
 
     class Meta:

@@ -107,12 +107,20 @@ class OGCLayer(ModelPost, OpenLayersMapParameters):
 
     @property
     def complete_url_wfs_wcs(self):
-        if self.is_vector:
-            url = f"{self.geoserver_domain.domain}/geoserver/{self.geoserver_workspace.workspace}/wfs"
-        elif self.is_raster:
-            url = f"{self.geoserver_domain.domain}/geoserver/{self.geoserver_workspace.workspace}/wcs"
+        if self.geoserver_domain.container_domain is None:
+            if self.is_vector:
+                url = f"{self.geoserver_domain.domain}/geoserver/{self.geoserver_workspace.workspace}/wfs"
+            elif self.is_raster:
+                url = f"{self.geoserver_domain.domain}/geoserver/{self.geoserver_workspace.workspace}/wcs"
+            else:
+                url = "Set if is vector or raster!"
         else:
-            url = "Set if is vector or raster!"
+            if self.is_vector:
+                url = f"{self.geoserver_domain.container_domain}/geoserver/{self.geoserver_workspace.workspace}/wfs"
+            elif self.is_raster:
+                url = f"{self.geoserver_domain.container_domain}/geoserver/{self.geoserver_workspace.workspace}/wcs"
+            else:
+                url = "Set if is vector or raster!"
 
         return url
 
