@@ -28,7 +28,7 @@ services:
     container_name: geoserver-staging
     restart: always
     ports:
-    - "${GS_HTTP_PORT}:8080"
+    - ${GS_HTTP_PORT}:8080
     volumes:
     - geoserver-data:/opt/tomcat/webapps/geoserver
     networks:
