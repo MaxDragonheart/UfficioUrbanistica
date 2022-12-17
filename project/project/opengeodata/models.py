@@ -41,7 +41,8 @@ class GeoServerDomain(TimeManager):
         WMS: 'www.mygeoserver.me/geoserver/MyWorkSpace/wms'
         WFS: 'www.mygeoserver.me/geoserver/MyWorkSpace/wfs'
     """
-    domain = models.TextField(unique=True)
+    domain = models.TextField(unique=True, blank=True, null=True)
+    container_domain = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.domain
@@ -99,7 +100,10 @@ class OGCLayer(ModelPost, OpenLayersMapParameters):
 
     @property
     def complete_url_wms(self):
-        return f"{self.geoserver_domain.domain}/geoserver/{self.geoserver_workspace.workspace}/wms"
+        if self.geoserver_domain.container_domain is None:
+            return f"{self.geoserver_domain.domain}/geoserver/{self.geoserver_workspace.workspace}/wms"
+        else:
+            return f"{self.geoserver_domain.container_domain}/geoserver/{self.geoserver_workspace.workspace}/wms"
 
     @property
     def complete_url_wfs_wcs(self):
@@ -130,9 +134,11 @@ class OGCLayer(ModelPost, OpenLayersMapParameters):
         fs, fs_token, paths = get_fs_token_paths(destination_folder)
         fs.mkdirs(path=destination_folder, exist_ok=True)
 
+        wms_url = f"{self.geoserver_domain.domain}/geoserver/{self.geoserver_workspace.workspace}/wms"
+
         # Get thumbnail from WMS
         img_path = get_wms_thumbnail(
-            wms_url=self.complete_url_wms,
+            wms_url=wms_url,
             service_version="1.3.0",
             layer_name=self.ogc_layer_name,
             output_data_folder=destination_folder,
@@ -141,7 +147,7 @@ class OGCLayer(ModelPost, OpenLayersMapParameters):
 
         # Get WMS's BBOX
         self.ogc_bbox = list(get_wms_bbox(
-            wms_url=self.complete_url_wms,
+            wms_url=wms_url,
             service_version="1.3.0",
             layer_name=self.ogc_layer_name
         ))
