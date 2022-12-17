@@ -1,4 +1,4 @@
-# Docker 
+# Docker & Compose
 
 ## Build
 Build: `docker build -t LAYER-NAME .`
@@ -19,3 +19,5 @@ List of active container: `docker ps`
 List of images: `docker images`
 
 Purge images and volumes: `docker system prune -a --volumes`
+
+Reset containers: `docker compose -f COMPOSE.YML down -v`
