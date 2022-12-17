@@ -2,28 +2,30 @@
 
 The project use `.env` with the key below:
 ```markdown
-SECRET_KEY='YOUR-SECRET-KEY'
-DB_ENGINE=django.contrib.gis.db.backends.postgis
-ALLOWED_HOSTS=127.0.0.1, localhost
-CSRF_TRUSTED_ORIGINS=['http://domin.io', 'https://domin.io']
-DEBUG=0
-DB_NAME=YOUR-DB_NAME
-DB_USER=YOUR-DB_USER
-DB_PASSWORD=YOUR-DB_PASSWORD
-DB_HOST=YOUR-DB_HOST
-DB_PORT=YOUR-DB_PORT
+# Generic Project Stuffs
+PROJECT_NAME=test_project_env_docker
+PROJECT_PORT=8301
 
-# Personal Initial Data[Optional]
-ADMIN_USERNAME=
-ADMIN_PASSWORD=
-DOMAIN_NAME=
-DOMAIN=
-SITE_TITLE=
-SITE_LOGO=
-SITE_DESCRIPTION=
-ADDRESS=
-CONTACT_PHONE=
-CONTACT_EMAIL=
-CONTACT_OFFICIAL_EMAIL=
+# Django
+DEBUG=False
+ALLOWED_HOSTS="*"
+CSRF_TRUSTED_ORIGINS=['http://domin.io', 'https://domin.io']
+SECRET_KEY=build-your-secret-key
+
+# DB Connection Parameters
+DB_NAME=ufficiourbanistica
+DB_HOST=db
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD=1983
+
+# Geoserver Parameters
+GS_VERSION=2.20.4
+GS_DEMO_DATA=True
+GS_HTTP_PORT=8302
+GS_INITIAL_MEMORY=1G
+GS_MAXIMUM_MEMORY=4G
+TOMCAT_MAJOR=9
+TOMCAT_MINOR=0
 ```
 To generate secret key you can use [Djecrety](https://djecrety.ir/)
