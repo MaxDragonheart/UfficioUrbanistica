@@ -2,6 +2,11 @@
 
 The project use `.env` with the key below:
 ```markdown
+# Project
+PROJECT_PORT=8301
+PROJECT_NAME=ufficio_urbanistica_test
+
+# Django
 SECRET_KEY='YOUR-SECRET-KEY'
 DB_ENGINE=django.contrib.gis.db.backends.postgis
 ALLOWED_HOSTS=127.0.0.1, localhost
@@ -10,8 +15,18 @@ DEBUG=0
 DB_NAME=YOUR-DB_NAME
 DB_USER=YOUR-DB_USER
 DB_PASSWORD=YOUR-DB_PASSWORD
-DB_HOST=YOUR-DB_HOST
+DB_HOST=db  # Same name of DB service in .yml file
 DB_PORT=YOUR-DB_PORT
+
+# Geoserver
+GS_VERSION=2.20.4
+GS_DEMO_DATA=False
+GS_HTTP_PORT=8300
+GS_INITIAL_MEMORY=1G
+GS_MAXIMUM_MEMORY=4G
+TOMCAT_MAJOR=9
+TOMCAT_MINOR=0
+TOMCAT_PATCH=69
 
 # Personal Initial Data[Optional]
 ADMIN_USERNAME=

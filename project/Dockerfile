@@ -16,16 +16,14 @@ ARG PROJECT_PORT=${PROJECT_PORT}
 FROM maxdragonheart/ulgis:latest as gis-os
 # Disable Prompt During Packages Installation
 ARG DEBIAN_FRONTEND=noninteractive
+# Update&Upgrade Ubuntu
 RUN apt update && apt upgrade -y
 
 # GIS-OS as Layer
 FROM gis-os as project-dependencies
-# Install Python env
-RUN apt install python3.8-venv -y
 # Set work directory
 WORKDIR /app/web
 # Environment variables
-#ARG PROJECT_NAME=UfficioUrbanistica_test
 ENV ENV_NAME=${PROJECT_NAME} \
     # Pip
     PIP_NO_CACHE_DIR=off \
