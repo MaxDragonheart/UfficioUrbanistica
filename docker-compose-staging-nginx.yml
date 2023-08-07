@@ -1,0 +1,102 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgis/postgis
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+    container_name: db-postgis-staging
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - ufficiourbanistica
+
+  geoserver:
+    image: maxdragonheart/geoserver:latest
+    environment:
+      GS_VERSION: ${GS_VERSION}
+      GS_DEMO_DATA: ${GS_DEMO_DATA}
+      GS_HTTP_PORT: ${GS_HTTP_PORT}
+      GS_INITIAL_MEMORY: ${GS_INITIAL_MEMORY}
+      GS_MAXIMUM_MEMORY: ${GS_MAXIMUM_MEMORY}
+      TOMCAT_MAJOR: ${TOMCAT_MAJOR}
+      TOMCAT_MINOR: ${TOMCAT_MINOR}
+      TOMCAT_PATCH: ${TOMCAT_PATCH}
+    container_name: geoserver-staging
+    restart: always
+    ports:
+    - ${GS_HTTP_PORT}:8080
+    volumes:
+    - geoserver-data:/opt/tomcat/webapps/geoserver
+    networks:
+      - ufficiourbanistica
+
+  website:
+    image: maxdragonheart/${PROJECT_NAME}
+    build:
+      context: ./project
+      dockerfile: Dockerfile
+    environment:
+      PROJECT_NAME: ${PROJECT_NAME}
+      PROJECT_PORT: ${PROJECT_PORT}
+      SECRET_KEY: ${SECRET_KEY}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
+      DB_HOST: ${DB_HOST}
+      DEBUG: ${DEBUG}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS}
+    container_name: website-staging
+    restart: always
+    ports:
+      - ${PROJECT_PORT}:80
+    volumes:
+      - website-static-folder:/app/web/static-folder
+      - website-media-folder:/app/web/media-folder
+      - website-logs:/app/web/logs
+      - website-fixtures:/app/web/project/fixtures
+    depends_on:
+      - db
+    networks:
+      - ufficiourbanistica
+
+  nginx:
+    image: maxdragonheart/nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: nginx-staging
+    volumes:
+      - website-static-folder:/app/web/static-folder
+      - website-media-folder:/app/web/media-folder
+      - nginx-conf:/etc/nginx
+      - nginx-logs:/var/log/nginx
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - website
+    networks:
+      - ufficiourbanistica
+
+volumes:
+  db-data:
+  geoserver-data:
+  website-static-folder:
+  website-media-folder:
+  website-logs:
+  website-fixtures:
+  nginx-conf:
+  nginx-logs:
+  certbot-etc:
+  certbot-var:
+
+networks:
+  ufficiourbanistica:
+    driver: bridge
