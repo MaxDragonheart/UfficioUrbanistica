@@ -18,6 +18,8 @@ List of active container: `docker ps`
 
 List of images: `docker images`
 
-Purge images and volumes: `docker system prune -a --volumes`
+Purge images: `docker system prune --all`
+
+Purge volumes: `docker volume prune --all`
 
 Reset containers: `docker compose -f COMPOSE.YML down -v`
