@@ -130,6 +130,7 @@ dmypy.json
 
 # Poetry stuffs
 /project/poetry.lock
+poetry.lock
 
 # IDE
 .idea

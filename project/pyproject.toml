@@ -1,30 +1,26 @@
 [tool.poetry]
-name = "ufficio urbanistica"
+name = "ufficiourbanistica"
 version = "0.1.0"
-description = ""
+description = "Geo-CMS per la condivisione di notizie da parte degli uffici tecnici della PA"
 authors = ["Massimiliano Moraca <info@massimilianomoraca.it>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
-Django = "^4.1.1"
-psycopg2-binary = "^2.9.3"
-django-environ = "^0.9.0"
-django-cors-headers = "^3.13.0"
-django-jazzmin = "^2.5.0"
-djangorestframework = "^3.13.1"
+python = "^3.10"
+django = "^4.2.4"
+psycopg2-binary = "^2.9.7"
+django-environ = "^0.10.0"
+django-cors-headers = "^4.2.0"
+django-jazzmin = "^2.6.0"
+djangorestframework = "^3.14.0"
 djangorestframework-gis = "^1.0"
-django-tinymce = "^3.5.0"
-Pillow = "^9.2.0"
-design-django-theme = "^2.0.3.post2"
-geopandas = "^0.11.1"
-OWSLib = "^0.27.2"
-Shapely = "^1.8.4"
-fsspec = "^2022.8.2"
+django-tinymce = "^3.6.1"
+design-django-theme = "^2.4.2"
+pillow = "^10.0.0"
+geopandas = "^0.13.2"
+owslib = "^0.29.2"
+fsspec = "^2023.6.0"
 
-
-[tool.poetry.group.dev.dependencies]
-jupyter = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core"]
