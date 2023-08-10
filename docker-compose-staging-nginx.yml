@@ -8,7 +8,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_DB: ${DB_NAME}
-    container_name: db-postgis-staging
+    container_name: staging-db-postgis
     volumes:
       - db-data:/var/lib/postgresql/data
     networks:
@@ -25,7 +25,7 @@ services:
       TOMCAT_MAJOR: ${TOMCAT_MAJOR}
       TOMCAT_MINOR: ${TOMCAT_MINOR}
       TOMCAT_PATCH: ${TOMCAT_PATCH}
-    container_name: geoserver-staging
+    container_name: staging-geoserver
     restart: always
     ports:
     - ${GS_HTTP_PORT}:8080
@@ -50,7 +50,7 @@ services:
       DB_HOST: ${DB_HOST}
       DEBUG: ${DEBUG}
       ALLOWED_HOSTS: ${ALLOWED_HOSTS}
-    container_name: website-staging
+    container_name: staging-website
     restart: always
     ports:
       - ${PROJECT_PORT}:80
@@ -69,7 +69,7 @@ services:
     build:
       context: ./nginx
       dockerfile: Dockerfile
-    container_name: nginx-staging
+    container_name: staging-nginx
     volumes:
       - website-static-folder:/app/web/static-folder
       - website-media-folder:/app/web/media-folder

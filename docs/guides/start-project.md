@@ -3,6 +3,9 @@
 ## 1 - Build and start the containers
 `docker compose -f COMPOSE.YML up -d --build`
 
+NB: If Apache is on do this before start: `sudo systemctl stop apache2`
+
+
 ## 2 - Make DB table and collact statics
 `docker exec -it WEBSITE-CONTAINER-NAME bash`
 `./start_project-production.sh`
