@@ -1,6 +1,12 @@
 # Project startup
 
 ## 1 - Build and start the containers
+If Apache2 is up, it's necessary to put it down.
+
+Check Apache2 status: `sudo systemctl status apache2`
+
+Stop Apache2: `sudo systemctl stop apache2`
+
 `docker compose -f COMPOSE.YML up -d --build`
 
 ## 2 - Make DB table and collact statics
