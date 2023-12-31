@@ -35,10 +35,7 @@ services:
       - ufficiourbanistica
 
   website:
-    image: maxdragonheart/${PROJECT_NAME}
-    build:
-      context: ./project
-      dockerfile: Dockerfile
+    image: maxdragonheart/ufficiourbanisticamain:latest
     environment:
       PROJECT_NAME: ${PROJECT_NAME}
       PROJECT_PORT: ${PROJECT_PORT}
