@@ -29,26 +29,30 @@ ENV ENV_NAME=${PROJECT_NAME} \
     PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
-    # Poetry
-    # https://python-poetry.org/docs/configuration/#using-environment-variables
-    # https://python-poetry.org/docs#ci-recommendations
-    POETRY_VERSION=1.2.1 \
-    POETRY_HOME=/opt/poetry \
-    POETRY_VENV=/opt/poetry-venv \
-    POETRY_CACHE_DIR=/opt/.cache
-# Install Poetry
-RUN python3 -m venv $POETRY_VENV \
-    && $POETRY_VENV/bin/pip install -U pip setuptools \
-    && $POETRY_VENV/bin/pip install poetry==${POETRY_VERSION}
-# Add Poetry to PATH
-ENV PATH="${PATH}:${POETRY_VENV}/bin"
+    # Poetry is already installed in ULGIS
+    POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_IN_PROJECT=1 \
+    POETRY_VIRTUALENVS_CREATE=1 \
+    POETRY_CACHE_DIR=/tmp/poetry_cache
 # Copy project requirements
 COPY ./pyproject.toml ./pyproject.toml
 # Project initialization
-RUN poetry install --only main --no-root --no-ansi
+RUN --mount=type=cache,target=$POETRY_CACHE_DIR poetry install --only main --no-root
 
 # Project Dependencies as Layer
-FROM project-dependencies as project
+FROM project-dependencies as gunicorn
+# Install Gunicorn
+RUN poetry add gunicorn
+# Create directory for logging files
+RUN mkdir logs
+# Copy adn active entrypoint
+COPY scripts/entrypoint.sh ./entrypoint.sh
+RUN chmod +x entrypoint.sh
+
+ENTRYPOINT ["./entrypoint.sh"]
+
+# Gunicorn as Layer
+FROM gunicorn as build-project
 ENV SECRET_KEY=${SECRET_KEY} \
     DEBUG=${DEBUG} \
     ALLOWED_HOSTS=${ALLOWED_HOSTS} \
@@ -64,22 +68,12 @@ RUN mkdir -p project static-folder media-folder
 COPY project project
 COPY media-folder/demo_data media-folder/demo_data
 RUN rm -rf project/fixtures
-#RUN rm -rf project/project/.env
-COPY scripts/migrate-collectstic.sh ./migrate-collectstic.sh
-COPY scripts/backup-fixtures.sh ./backup-fixtures.sh
-COPY scripts/restore-fixtures.sh ./restore-fixtures.sh
-COPY scripts/make-fixtures-folders.sh ./make_fixtures-folders.sh
-COPY scripts/start_project-production.sh ./start_project-production.sh
+
+COPY scripts/production/backup_restore/backup-fixtures.sh ./backup_restore/backup-fixtures.sh
+COPY scripts/production/backup_restore/restore-fixtures.sh ./backup_restore/restore-fixtures.sh
+
+COPY scripts/production/migrate-collectstic.sh ./migrate-collectstic.sh
+COPY scripts/production/start_project-production.sh ./start_project-production.sh
+
 RUN chmod +x **.sh
 
-# Project as Layer
-FROM project as gunicorn-setting-up
-# Install Gunicorn
-RUN poetry add gunicorn
-# Create directory for logging files
-RUN mkdir logs
-# Copy adn active entrypoint
-COPY scripts/entrypoint.sh ./entrypoint.sh
-RUN chmod +x entrypoint.sh
-
-ENTRYPOINT ["./entrypoint.sh"]
