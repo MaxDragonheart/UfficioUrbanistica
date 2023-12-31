@@ -8,4 +8,4 @@ echo "--- Copy startup fixtures into project folder"
 cp -r media-folder/demo_data/fixtures project/
 
 echo "--- Upload startup fixtures into DB"
-bash ./restore-fixtures.sh
+bash ./backup_restore/restore-fixtures.sh

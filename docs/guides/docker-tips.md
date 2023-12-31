@@ -16,7 +16,9 @@ Start container: `docker container run -it -d --name CONTAINER-NAME -p 8081:8080
 ## Utility
 List of active container: `docker ps`
 
-List of images: `docker images`
+List all images: `docker images`
+
+List all volumes: `docker volume ls`
 
 Purge images: `docker system prune --all`
 
