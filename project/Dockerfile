@@ -66,6 +66,7 @@ ENV SECRET_KEY=${SECRET_KEY} \
 # Create project directories
 RUN mkdir -p project static-folder media-folder
 COPY project project
+RUN rm -rf project/project/.env
 COPY media-folder/demo_data media-folder/demo_data
 RUN rm -rf project/fixtures
 
