@@ -7,19 +7,19 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-django = "^4.2.4"
-psycopg2-binary = "^2.9.7"
-django-environ = "^0.10.0"
-django-cors-headers = "^4.2.0"
+django = "^5.0"
+django-environ = "^0.11.2"
+django-cors-headers = "^4.3.1"
 django-jazzmin = "^2.6.0"
 djangorestframework = "^3.14.0"
 djangorestframework-gis = "^1.0"
 django-tinymce = "^3.6.1"
-design-django-theme = "^2.4.2"
-pillow = "^10.0.0"
-geopandas = "^0.13.2"
-owslib = "^0.29.2"
-fsspec = "^2023.6.0"
+design-django-theme = "^2.7.0.post1"
+psycopg2-binary = "^2.9.9"
+pillow = "^10.1.0"
+geopandas = "^0.14.1"
+owslib = "^0.29.3"
+fsspec = "^2023.12.2"
 
 
 [build-system]
