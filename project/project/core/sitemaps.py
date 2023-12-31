@@ -1,4 +1,4 @@
-from django.contrib.sitemaps import ping_google, Sitemap
+from django.contrib.sitemaps import Sitemap
 from django.contrib.flatpages.models import FlatPage
 from django.urls import reverse
 
@@ -7,16 +7,7 @@ class CoreSitemap(Sitemap):
     """
     Generic Sitemap class.
     """
-    protocol = "https"
-
-    def save(self, force_insert=False, force_update=False):
-        super().save(force_insert, force_update)
-        try:
-            ping_google()
-        except Exception:
-            # Bare 'except' because we could get a variety
-            # of HTTP-related exceptions.
-            pass
+    pass
 
 
 class CoreSitemapModels(CoreSitemap):
