@@ -29,23 +29,15 @@ ENV ENV_NAME=${PROJECT_NAME} \
     PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
-    # Poetry
-    # https://python-poetry.org/docs/configuration/#using-environment-variables
-    # https://python-poetry.org/docs#ci-recommendations
-    POETRY_VERSION=1.2.1 \
-    POETRY_HOME=/opt/poetry \
-    POETRY_VENV=/opt/poetry-venv \
-    POETRY_CACHE_DIR=/opt/.cache
-# Install Poetry
-RUN python3 -m venv $POETRY_VENV \
-    && $POETRY_VENV/bin/pip install -U pip setuptools \
-    && $POETRY_VENV/bin/pip install poetry==${POETRY_VERSION}
-# Add Poetry to PATH
-ENV PATH="${PATH}:${POETRY_VENV}/bin"
+    # Poetry is already installed in ULGIS
+    POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_IN_PROJECT=1 \
+    POETRY_VIRTUALENVS_CREATE=1 \
+    POETRY_CACHE_DIR=/tmp/poetry_cache
 # Copy project requirements
 COPY ./pyproject.toml ./pyproject.toml
 # Project initialization
-RUN poetry install --only main --no-root --no-ansi
+RUN --mount=type=cache,target=$POETRY_CACHE_DIR poetry install --only main --no-root
 
 # Project Dependencies as Layer
 FROM project-dependencies as project
