@@ -23,6 +23,8 @@ services:
       GS_MAXIMUM_MEMORY: ${GS_MAXIMUM_MEMORY}
     container_name: geoserver-staging
     restart: always
+    ports:
+      - 8080:8080
     volumes:
     - geoserver-data:/opt/tomcat/webapps/geoserver
     networks:
